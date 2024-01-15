@@ -1,6 +1,6 @@
 .card,
 .keys-wrapper {
-  max-width: fit-content;
+  width: fit-content;
   border-radius: 25px;
 }
 
@@ -9,7 +9,7 @@
 }
 
 .keys-row {
-  max-width: fit-content;
+  width: fit-content;
 }
 
 .btn {

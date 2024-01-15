@@ -1,0 +1,12 @@
+.btn {
+  width: 40px;
+  height: 40px;
+}
+
+.card {
+  max-width: fit-content;
+}
+
+.keys-row {
+  max-width: fit-content;
+}

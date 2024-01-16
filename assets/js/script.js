@@ -2,15 +2,13 @@ let currentEntry = "";
 let firstOperand = "";
 let operator = "";
 let secondOperand = "";
-let result = "";
 
 // Displays
 const primaryDisplay = document.getElementById("primaryDisplay");
 const secondaryDisplay = document.getElementById("secondaryDisplay");
 
 // Displays initial state
-primaryDisplay.innerText = "0";
-secondaryDisplay.innerText = "";
+updateDisplays("0", "");
 
 // Buttons
 const operands = document.querySelectorAll(".operand");
@@ -23,8 +21,7 @@ const clearEntryButton = document.getElementById("c");
 operands.forEach(function (operand) {
   operand.addEventListener("click", function () {
     const value = operand.getAttribute("data-value");
-    currentEntry += value;
-    showEntry(currentEntry);
+    handleOperandClick(value);
   });
 });
 
@@ -32,52 +29,67 @@ operands.forEach(function (operand) {
 operators.forEach(function (operator) {
   operator.addEventListener("click", function () {
     const operation = operator.getAttribute("data-value");
-    setFirstOperand(operation);
+    handleOperatorClick(operation);
   });
 });
 
-// resultButton event listener
-resultButton.addEventListener("click", function () {
-  setSecondOperand();
-});
+// Result button event listener
+resultButton.addEventListener("click", calculate);
 
 // All Clear button event listener
-allClearButton.addEventListener("click", function () {
-  allClear();
-});
+allClearButton.addEventListener("click", allClear);
 
 // Clear entry button event listener
-clearEntryButton.addEventListener("click", function () {
-  clearEntry();
-});
+clearEntryButton.addEventListener("click", clearEntry);
+
+function handleOperandClick(value) {
+  currentEntry += value;
+  showEntry(currentEntry);
+}
+
+function handleOperatorClick(operation) {
+  if (currentEntry !== "") {
+    if (firstOperand === "") {
+      firstOperand = currentEntry;
+      operator = operation;
+      updateDisplays();
+      currentEntry = "";
+    } else {
+      // Handle consecutive operators by updating the operator
+      operator = operation;
+      updateSecondaryDisplay();
+    }
+  }
+}
+
+function calculate() {}
+
+function updateSecondaryDisplay() {
+  secondaryDisplay.innerText = firstOperand + " " + operator;
+}
 
 function showEntry(value) {
   primaryDisplay.innerText = value;
 }
 
-function setFirstOperand(operation) {
-  firstOperand = result || currentEntry || "0";
-  operator = operation;
-  secondaryDisplay.innerText = firstOperand + " " + operation;
-  currentEntry = "";
+function updateDisplays(primaryValue, secondaryValue) {
+  primaryDisplay.innerText = primaryValue;
+  secondaryDisplay.innerText = secondaryValue;
 }
 
-function setSecondOperand() {
-  secondOperand = currentEntry || firstOperand;
-  secondaryDisplay.innerText =
-    firstOperand + " " + operator + " " + secondOperand + " " + "=";
+function resetOperands() {
   currentEntry = "";
+  firstOperand = "";
+  operator = "";
+  secondOperand = "";
 }
-
-function calculate() {}
 
 function allClear() {
-  currentEntry = "";
-  primaryDisplay.innerText = "0";
-  secondaryDisplay.innerText = "";
+  resetOperands();
+  updateDisplays("0", "");
 }
 
 function clearEntry() {
   currentEntry = "";
-  primaryDisplay.innerText = "0";
+  showEntry("0");
 }

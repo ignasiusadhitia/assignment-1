@@ -52,7 +52,7 @@ function handleOperatorClick(operation) {
     if (firstOperand === "") {
       firstOperand = currentEntry;
       operator = operation;
-      updateDisplays();
+      updateSecondaryDisplay();
       currentEntry = "";
     } else {
       // Handle consecutive operators by updating the operator
@@ -62,7 +62,38 @@ function handleOperatorClick(operation) {
   }
 }
 
-function calculate() {}
+function calculate() {
+  if (currentEntry !== "") {
+    secondOperand = currentEntry;
+    let resultValue;
+
+    switch (operator) {
+      case "+":
+        resultValue = parseFloat(firstOperand) + parseFloat(secondOperand);
+        break;
+      case "-":
+        resultValue = parseFloat(firstOperand) - parseFloat(secondOperand);
+        break;
+      case "x":
+        resultValue = parseFloat(firstOperand) * parseFloat(secondOperand);
+        break;
+      case "/":
+        if (parseFloat(secondOperand) !== 0) {
+          resultValue = parseFloat(firstOperand) / parseFloat(secondOperand);
+        } else {
+          alert("Cannot divide by zero");
+          allClear();
+          return;
+        }
+        break;
+      default:
+        return;
+    }
+
+    updateDisplays(resultValue.toString(), "");
+    resetOperands();
+  }
+}
 
 function updateSecondaryDisplay() {
   secondaryDisplay.innerText = firstOperand + " " + operator;

@@ -63,13 +63,18 @@ function calculatePercentage() {
         const percentage =
           (numericCurrentEntry / 100) * parseFloat(firstOperand);
         updateDisplays(
-          percentage.toString(),
-          `${firstOperand} ${operator} ${currentEntry} % =`
+          addCommas(percentage.toString()),
+          `${addCommas(firstOperand)} ${operator} ${addCommas(
+            currentEntry
+          )} % =`
         );
         resetOperands();
       } else {
         const percentage = numericCurrentEntry / 100;
-        updateDisplays(percentage.toString(), `${currentEntry}%`);
+        updateDisplays(
+          addCommas(percentage.toString()),
+          `${addCommas(currentEntry)}%`
+        );
         currentEntry = percentage.toString();
       }
     }
@@ -83,14 +88,14 @@ function calculate() {
 
     resultValue =
       resultValue !== undefined
-        ? parseFloat(resultValue.toFixed(DECIMAL_PLACES))
+        ? addCommas(parseFloat(resultValue.toFixed(DECIMAL_PLACES)).toString())
         : undefined;
 
     updateSecondaryDisplay();
     updateDisplays(
       resultValue !== undefined ? resultValue.toString() : "ERROR",
       resultValue !== undefined
-        ? `${firstOperand} ${operator} ${secondOperand} =`
+        ? `${addCommas(firstOperand)} ${operator} ${addCommas(secondOperand)} =`
         : ""
     );
     resetOperands();
@@ -125,16 +130,25 @@ function updateSecondaryDisplay() {
     const numericSecondOperand = parseFloat(secondOperand);
     const formattedSecondOperand =
       !isNaN(numericSecondOperand) && numericSecondOperand < 0
-        ? `(${secondOperand})`
+        ? `(${addCommas(secondOperand)})`
         : secondOperand;
-    secondaryDisplay.innerText = `${firstOperand} ${operator} ${formattedSecondOperand} =`;
+    secondaryDisplay.innerText = `${addCommas(
+      firstOperand
+    )} ${operator} ${formattedSecondOperand} =`;
   } else {
-    secondaryDisplay.innerText = `${firstOperand} ${operator}`;
+    secondaryDisplay.innerText = `${addCommas(firstOperand)} ${operator}`;
   }
 }
 
 function showEntry(value) {
-  primaryDisplay.innerText = value;
+  const formattedValue = addCommas(value.slice(0, MAX_DIGITS));
+  primaryDisplay.innerText = formattedValue;
+}
+
+function addCommas(value) {
+  const parts = value.toString().split(".");
+  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  return parts.join(".");
 }
 
 function resetOperands() {

@@ -62,7 +62,7 @@ function handleOperatorClick(operation) {
 }
 
 function negate() {
-  if (currentEntry !== "" && currentEntry !== 0) {
+  if (currentEntry !== "" && currentEntry !== "0") {
     currentEntry =
       currentEntry.charAt(0) === "-"
         ? currentEntry.slice(1)

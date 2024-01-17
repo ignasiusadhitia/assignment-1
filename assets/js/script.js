@@ -8,7 +8,7 @@ const primaryDisplay = document.getElementById("primaryDisplay");
 const secondaryDisplay = document.getElementById("secondaryDisplay");
 
 // Displays initial state
-updateDisplays("0", "");
+updateDisplays("", "");
 
 // Buttons
 const operands = document.querySelectorAll(".operand");
@@ -17,29 +17,19 @@ const resultButton = document.getElementById("=");
 const allClearButton = document.getElementById("ac");
 const clearEntryButton = document.getElementById("c");
 
-// Operand button event listener
-operands.forEach(function (operand) {
-  operand.addEventListener("click", function () {
-    const value = operand.getAttribute("data-value");
-    handleOperandClick(value);
-  });
-});
-
-// Operator button event listener
-operators.forEach(function (operator) {
-  operator.addEventListener("click", function () {
-    const operation = operator.getAttribute("data-value");
-    handleOperatorClick(operation);
-  });
-});
-
-// Result button event listener
+// Event listeners
+operands.forEach((operand) =>
+  operand.addEventListener("click", () =>
+    handleOperandClick(operand.getAttribute("data-value"))
+  )
+);
+operators.forEach((operator) =>
+  operator.addEventListener("click", () =>
+    handleOperatorClick(operator.getAttribute("data-value"))
+  )
+);
 resultButton.addEventListener("click", calculate);
-
-// All Clear button event listener
 allClearButton.addEventListener("click", allClear);
-
-// Clear entry button event listener
 clearEntryButton.addEventListener("click", clearEntry);
 
 function handleOperandClick(value) {
@@ -55,9 +45,7 @@ function handleOperatorClick(operation) {
       updateSecondaryDisplay();
       currentEntry = "";
     } else {
-      // Handle consecutive operators by updating the operator
       operator = operation;
-      updateSecondaryDisplay();
     }
   }
 }
@@ -78,25 +66,29 @@ function calculate() {
         resultValue = parseFloat(firstOperand) * parseFloat(secondOperand);
         break;
       case "/":
-        if (parseFloat(secondOperand) !== 0) {
-          resultValue = parseFloat(firstOperand) / parseFloat(secondOperand);
-        } else {
-          alert("Cannot divide by zero");
-          allClear();
-          return;
-        }
+        resultValue =
+          parseFloat(secondOperand) !== 0
+            ? parseFloat(firstOperand) / parseFloat(secondOperand)
+            : (alert("Cannot divide by zero"), allClear(), 0);
         break;
       default:
         return;
     }
 
-    updateDisplays(resultValue.toString(), "");
+    updateSecondaryDisplay();
+    updateDisplays(
+      resultValue.toString(),
+      `${firstOperand} ${operator} ${secondOperand} =`
+    );
     resetOperands();
   }
 }
 
 function updateSecondaryDisplay() {
-  secondaryDisplay.innerText = firstOperand + " " + operator;
+  secondaryDisplay.innerText =
+    secondOperand !== ""
+      ? `${firstOperand} ${operator} ${secondOperand} =`
+      : `${firstOperand} ${operator}`;
 }
 
 function showEntry(value) {

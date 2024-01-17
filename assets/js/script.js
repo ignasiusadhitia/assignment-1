@@ -75,6 +75,10 @@ function calculate() {
         return;
     }
 
+    resultValue =
+      resultValue !== undefined
+        ? parseFloat(resultValue.toFixed(4))
+        : undefined;
     updateSecondaryDisplay();
     updateDisplays(
       resultValue !== undefined ? resultValue.toString() : "ERROR",

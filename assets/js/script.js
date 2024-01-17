@@ -77,31 +77,11 @@ function calculatePercentage() {
 function calculate() {
   if (currentEntry !== "") {
     secondOperand = currentEntry;
-    let resultValue;
-
-    switch (operator) {
-      case "+":
-        resultValue = parseFloat(firstOperand) + parseFloat(secondOperand);
-        break;
-      case "-":
-        resultValue = parseFloat(firstOperand) - parseFloat(secondOperand);
-        break;
-      case "x":
-        resultValue = parseFloat(firstOperand) * parseFloat(secondOperand);
-        break;
-      case "/":
-        resultValue =
-          parseFloat(secondOperand) !== 0
-            ? parseFloat(firstOperand) / parseFloat(secondOperand)
-            : (alert("Cannot divide by zero"), allClear(), undefined);
-        break;
-      default:
-        return;
-    }
+    let resultValue = performCalculation();
 
     resultValue =
       resultValue !== undefined
-        ? parseFloat(resultValue.toFixed(4))
+        ? parseFloat(resultValue.toFixed(DECIMAL_PLACES))
         : undefined;
 
     updateSecondaryDisplay();
@@ -113,6 +93,29 @@ function calculate() {
     );
     resetOperands();
   }
+}
+
+function performCalculation() {
+  switch (operator) {
+    case "+":
+      return parseFloat(firstOperand) + parseFloat(secondOperand);
+    case "-":
+      return parseFloat(firstOperand) - parseFloat(secondOperand);
+    case "x":
+      return parseFloat(firstOperand) * parseFloat(secondOperand);
+    case "/":
+      return parseFloat(secondOperand) !== 0
+        ? parseFloat(firstOperand) / parseFloat(secondOperand)
+        : handleDivisionByZero();
+    default:
+      return;
+  }
+}
+
+function handleDivisionByZero() {
+  alert("Cannot divide by zero");
+  allClear();
+  return undefined;
 }
 
 function updateSecondaryDisplay() {
@@ -148,6 +151,8 @@ function clearEntry() {
   currentEntry = "";
   showEntry("0");
 }
+
+const DECIMAL_PLACES = 4;
 
 const operands = document.querySelectorAll(".operand");
 const operators = document.querySelectorAll(".operator");

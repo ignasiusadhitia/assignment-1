@@ -202,7 +202,11 @@ operators.forEach((operator) =>
 );
 negationButton.addEventListener("click", negate);
 percentButton.addEventListener("click", calculatePercentage);
-resultButton.addEventListener("click", calculate);
+resultButton.addEventListener("click", () => {
+  if (firstOperand !== "" && operator !== "") {
+    calculate();
+  }
+});
 allClearButton.addEventListener("click", allClear);
 clearEntryButton.addEventListener("click", clearEntry);
 

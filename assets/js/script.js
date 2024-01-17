@@ -91,8 +91,12 @@ function calculatePercentage() {
   }
 }
 
+function shouldCalculate() {
+  return firstOperand !== "" && operator !== "";
+}
+
 function calculate() {
-  if (currentEntry !== "") {
+  if (currentEntry !== "" && shouldCalculate()) {
     secondOperand = currentEntry;
     let resultValue = performCalculation();
 
@@ -203,7 +207,7 @@ operators.forEach((operator) =>
 negationButton.addEventListener("click", negate);
 percentButton.addEventListener("click", calculatePercentage);
 resultButton.addEventListener("click", () => {
-  if (firstOperand !== "" && operator !== "") {
+  if (shouldCalculate()) {
     calculate();
   }
 });

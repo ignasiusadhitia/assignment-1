@@ -6,45 +6,20 @@ let secondOperand = "";
 const primaryDisplay = document.getElementById("primaryDisplay");
 const secondaryDisplay = document.getElementById("secondaryDisplay");
 
+function updateDisplays(primaryValue, secondaryValue) {
+  primaryDisplay.innerText = primaryValue;
+  secondaryDisplay.innerText = secondaryValue;
+}
+
 updateDisplays("", "");
-
-const operands = document.querySelectorAll(".operand");
-const operators = document.querySelectorAll(".operator");
-const negationButton = document.getElementById("negation");
-const percentButton = document.getElementById("percent");
-const resultButton = document.getElementById("=");
-const allClearButton = document.getElementById("ac");
-const clearEntryButton = document.getElementById("c");
-
-operands.forEach((operand) =>
-  operand.addEventListener("click", () =>
-    handleOperandClick(operand.getAttribute("data-value"))
-  )
-);
-
-operators.forEach((operator) =>
-  operator.addEventListener("click", () =>
-    handleOperatorClick(operator.getAttribute("data-value"))
-  )
-);
-
-negationButton.addEventListener("click", negate);
-percentButton.addEventListener("click", calculatePercentage);
-resultButton.addEventListener("click", calculate);
-allClearButton.addEventListener("click", allClear);
-clearEntryButton.addEventListener("click", clearEntry);
 
 function handleOperandClick(value) {
   if (value === "." && (currentEntry === "" || currentEntry.includes("."))) {
     return;
   }
 
-  if (currentEntry === "0" && value !== ".") {
-    currentEntry = value;
-  } else {
-    currentEntry += value;
-  }
-
+  currentEntry =
+    currentEntry === "0" && value !== "." ? value : currentEntry + value;
   showEntry(currentEntry);
 }
 
@@ -82,19 +57,17 @@ function calculatePercentage() {
     const numericCurrentEntry = parseFloat(currentEntry);
 
     if (!isNaN(numericCurrentEntry)) {
-      if (firstOperand !== "") {
-        const percentage =
-          (numericCurrentEntry / 100) * parseFloat(firstOperand);
-        updateDisplays(
-          percentage.toString(),
-          `${firstOperand} ${operator} ${currentEntry} % =`
-        );
-        resetOperands();
-      } else {
-        const percentage = numericCurrentEntry / 100;
-        updateDisplays(percentage.toString(), `${currentEntry}%`);
-        currentEntry = percentage.toString();
-      }
+      const percentage =
+        firstOperand !== ""
+          ? (numericCurrentEntry / 100) * parseFloat(firstOperand)
+          : numericCurrentEntry / 100;
+      updateDisplays(
+        percentage.toString(),
+        firstOperand !== ""
+          ? `${firstOperand} ${operator} ${currentEntry} % =`
+          : `${currentEntry}%`
+      );
+      resetOperands();
     }
   }
 }
@@ -157,11 +130,6 @@ function showEntry(value) {
   primaryDisplay.innerText = value;
 }
 
-function updateDisplays(primaryValue, secondaryValue) {
-  primaryDisplay.innerText = primaryValue;
-  secondaryDisplay.innerText = secondaryValue;
-}
-
 function resetOperands() {
   currentEntry = "";
   firstOperand = "";
@@ -178,3 +146,25 @@ function clearEntry() {
   currentEntry = "";
   showEntry("0");
 }
+
+const operands = document.querySelectorAll(".operand");
+const operators = document.querySelectorAll(".operator");
+const negationButton = document.getElementById("negation");
+const percentButton = document.getElementById("percent");
+const resultButton = document.getElementById("=");
+const allClearButton = document.getElementById("ac");
+const clearEntryButton = document.getElementById("c");
+
+operands.forEach((operand) =>
+  operand.addEventListener("click", () => handleOperandClick(operand.innerText))
+);
+operators.forEach((operator) =>
+  operator.addEventListener("click", () =>
+    handleOperatorClick(operator.getAttribute("data-value"))
+  )
+);
+negationButton.addEventListener("click", negate);
+percentButton.addEventListener("click", calculatePercentage);
+resultButton.addEventListener("click", calculate);
+allClearButton.addEventListener("click", allClear);
+clearEntryButton.addEventListener("click", clearEntry);

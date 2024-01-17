@@ -2,37 +2,37 @@
 
 ## Introduction
 
-The Calculator App is a simple yet powerful calculator designed for basic arithmetic calculations. It provides a user-friendly interface for performing addition, subtraction, multiplication, and division, along with additional features like percentage calculations and number formatting.
+The Calculator App is a versatile calculator designed for basic arithmetic calculations with additional features such as percentage calculations and number formatting. It provides a user-friendly interface that supports both button clicks and keyboard input.
 
 ## Features
 
 ### 1. Basic Arithmetic Operations
 
-- **Addition (+):** Perform addition calculations by clicking the "+" button or using the keyboard.
-- **Subtraction (-):** Subtract numbers by clicking the "-" button or using the keyboard.
-- **Multiplication (x):** Multiply numbers by clicking the "x" button or using the keyboard.
-- **Division (/):** Divide numbers by clicking the "/" button or using the keyboard.
+- **Addition (+):** Perform addition calculations.
+- **Subtraction (-):** Subtract numbers.
+- **Multiplication (x):** Multiply numbers.
+- **Division (/):** Divide numbers.
 
 ### 2. Keyboard Support
 
-- The calculator supports keyboard input for all numeric digits (0-9), decimal point (.), and basic operators (+, -, *, /).
-- Additional keyboard shortcuts include Enter (=) for calculating results, Escape for clearing all, Backspace for clearing the last entry, and "n" for negation.
+- The calculator supports keyboard input for numeric digits (0-9), the decimal point (.), and basic operators (+, -, *, /).
+- Keyboard shortcuts include Enter (=) for calculating results, Escape for clearing all, Backspace for clearing the last entry, and "n" for negation.
 
 ### 3. Limit on Digits
 
-- The calculator restricts the entry of numbers to a maximum of 12 digits for readability and precision.
+- Entries are limited to a maximum of 12 digits for readability and precision.
 
 ### 4. Number Formatting
 
-- Numbers are formatted with commas for better readability. For example, "1,000" or "1,000,000".
+- Numbers are formatted with commas for better readability (e.g., "1,000" or "1,000,000").
 
 ### 5. Negation
 
-- Negate a number by clicking the "+/-" button or using the "n" key on the keyboard.
+- Negate a number by clicking the "+/-" button or pressing "n" on the keyboard.
 
 ### 6. Percentage Calculation
 
-- Calculate percentages of numbers with the "%" button or the "%" key on the keyboard.
+- Calculate percentages of numbers using the "%" button or the "%" key on the keyboard.
 
 ### 7. Error Handling
 
@@ -40,17 +40,15 @@ The Calculator App is a simple yet powerful calculator designed for basic arithm
 
 ### 8. Responsive Design
 
-- The calculator is designed with a responsive layout to ensure a consistent and user-friendly experience across different devices and screen sizes.
+- The calculator features a responsive layout for a consistent user experience across different devices and screen sizes.
 
 ## Usage
 
 1. **Numeric Entry:**
-   - Click on the numeric buttons (0-9) to input numbers.
-   - Use the decimal point (.) for entering decimal numbers.
+   - Click on numeric buttons (0-9) or use the decimal point (.) for numeric input.
 
 2. **Arithmetic Operations:**
-   - Click on the operator buttons (+, -, *, /) to perform arithmetic operations.
-   - Use the corresponding keyboard keys for operators.
+   - Click on operator buttons (+, -, *, /) or use the corresponding keyboard keys.
 
 3. **Result Calculation:**
    - Click on the "=" button or press Enter to calculate results.
@@ -67,8 +65,8 @@ The Calculator App is a simple yet powerful calculator designed for basic arithm
 
 ## Technical Details
 
-- **Decimal Places:** The calculator displays results rounded to 4 decimal places.
-- **Maximum Digits:** The maximum allowed digits for entry is set to 12.
+- **Decimal Places:** Results are displayed rounded to 4 decimal places.
+- **Maximum Digits:** The calculator allows a maximum of 12 digits for entry.
 - **Number Formatting:** The `addCommas` function is used to format numbers with commas.
 
 ## Developer Information
@@ -86,6 +84,7 @@ The Calculator App is a simple yet powerful calculator designed for basic arithm
   - `handleOperatorClick(operation)`: Handles arithmetic operator clicks.
   - `negate()`: Negates the current entry.
   - `calculatePercentage()`: Calculates percentages.
+  - `shouldCalculate()`: Checks if a calculation should be performed.
   - `calculate()`: Performs arithmetic calculations.
   - `performCalculation()`: Executes the actual arithmetic operation.
   - `handleDivisionByZero()`: Handles division by zero.
@@ -98,4 +97,4 @@ The Calculator App is a simple yet powerful calculator designed for basic arithm
 
 ## Conclusion
 
-The Calculator App is designed to provide a convenient and efficient tool for performing basic arithmetic calculations. Whether you're using the on-screen buttons or the keyboard shortcuts, the calculator ensures a seamless and user-friendly experience.
+The Calculator App offers a convenient and efficient tool for performing basic arithmetic calculations. Whether using on-screen buttons or keyboard shortcuts, the calculator ensures a seamless and user-friendly experience.

@@ -13,6 +13,7 @@ updateDisplays("", "");
 // Buttons
 const operands = document.querySelectorAll(".operand");
 const operators = document.querySelectorAll(".operator");
+const negationButton = document.getElementById("negation");
 const resultButton = document.getElementById("=");
 const allClearButton = document.getElementById("ac");
 const clearEntryButton = document.getElementById("c");
@@ -28,6 +29,7 @@ operators.forEach((operator) =>
     handleOperatorClick(operator.getAttribute("data-value"))
   )
 );
+negationButton.addEventListener("click", negate);
 resultButton.addEventListener("click", calculate);
 allClearButton.addEventListener("click", allClear);
 clearEntryButton.addEventListener("click", clearEntry);
@@ -48,6 +50,19 @@ function handleOperatorClick(operation) {
       operator = operation;
     }
   }
+}
+
+function negate() {
+  if (currentEntry !== "") {
+    if (currentEntry.charAt(0) === "-") {
+      currentEntry = currentEntry.slice(1);
+    } else {
+      currentEntry = `-${currentEntry}`;
+    }
+  }
+
+  updateDisplays(currentEntry, "");
+  updateSecondaryDisplay();
 }
 
 function calculate() {
@@ -91,10 +106,17 @@ function calculate() {
 }
 
 function updateSecondaryDisplay() {
-  secondaryDisplay.innerText =
-    secondOperand !== ""
-      ? `${firstOperand} ${operator} ${secondOperand} =`
-      : `${firstOperand} ${operator}`;
+  if (secondOperand !== "") {
+    const numericSecondOperand = parseFloat(secondOperand);
+
+    const formattedSecondOperand =
+      !isNaN(numericSecondOperand) && numericSecondOperand < 0
+        ? `(${secondOperand})`
+        : secondOperand;
+    secondaryDisplay.innerText = `${firstOperand} ${operator} ${formattedSecondOperand} =`;
+  } else {
+    secondaryDisplay.innerText = `${firstOperand} ${operator}`;
+  }
 }
 
 function showEntry(value) {

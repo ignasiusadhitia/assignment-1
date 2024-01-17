@@ -3,14 +3,11 @@ let firstOperand = "";
 let operator = "";
 let secondOperand = "";
 
-// Displays
 const primaryDisplay = document.getElementById("primaryDisplay");
 const secondaryDisplay = document.getElementById("secondaryDisplay");
 
-// Displays initial state
 updateDisplays("", "");
 
-// Buttons
 const operands = document.querySelectorAll(".operand");
 const operators = document.querySelectorAll(".operator");
 const negationButton = document.getElementById("negation");
@@ -18,17 +15,18 @@ const resultButton = document.getElementById("=");
 const allClearButton = document.getElementById("ac");
 const clearEntryButton = document.getElementById("c");
 
-// Event listeners
 operands.forEach((operand) =>
   operand.addEventListener("click", () =>
     handleOperandClick(operand.getAttribute("data-value"))
   )
 );
+
 operators.forEach((operator) =>
   operator.addEventListener("click", () =>
     handleOperatorClick(operator.getAttribute("data-value"))
   )
 );
+
 negationButton.addEventListener("click", negate);
 resultButton.addEventListener("click", calculate);
 allClearButton.addEventListener("click", allClear);
@@ -54,11 +52,10 @@ function handleOperatorClick(operation) {
 
 function negate() {
   if (currentEntry !== "") {
-    if (currentEntry.charAt(0) === "-") {
-      currentEntry = currentEntry.slice(1);
-    } else {
-      currentEntry = `-${currentEntry}`;
-    }
+    currentEntry =
+      currentEntry.charAt(0) === "-"
+        ? currentEntry.slice(1)
+        : `-${currentEntry}`;
   }
 
   updateDisplays(currentEntry, "");
@@ -94,6 +91,7 @@ function calculate() {
       resultValue !== undefined
         ? parseFloat(resultValue.toFixed(4))
         : undefined;
+
     updateSecondaryDisplay();
     updateDisplays(
       resultValue !== undefined ? resultValue.toString() : "ERROR",
@@ -108,7 +106,6 @@ function calculate() {
 function updateSecondaryDisplay() {
   if (secondOperand !== "") {
     const numericSecondOperand = parseFloat(secondOperand);
-
     const formattedSecondOperand =
       !isNaN(numericSecondOperand) && numericSecondOperand < 0
         ? `(${secondOperand})`

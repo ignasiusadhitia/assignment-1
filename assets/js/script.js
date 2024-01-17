@@ -11,6 +11,7 @@ updateDisplays("", "");
 const operands = document.querySelectorAll(".operand");
 const operators = document.querySelectorAll(".operator");
 const negationButton = document.getElementById("negation");
+const percentButton = document.getElementById("percent");
 const resultButton = document.getElementById("=");
 const allClearButton = document.getElementById("ac");
 const clearEntryButton = document.getElementById("c");
@@ -28,6 +29,7 @@ operators.forEach((operator) =>
 );
 
 negationButton.addEventListener("click", negate);
+percentButton.addEventListener("click", calculatePercentage);
 resultButton.addEventListener("click", calculate);
 allClearButton.addEventListener("click", allClear);
 clearEntryButton.addEventListener("click", clearEntry);
@@ -73,6 +75,28 @@ function negate() {
 
   updateDisplays(currentEntry, "");
   updateSecondaryDisplay();
+}
+
+function calculatePercentage() {
+  if (currentEntry !== "" && firstOperand === "") {
+    const numericCurrentEntry = parseFloat(currentEntry);
+
+    if (!isNaN(numericCurrentEntry)) {
+      if (firstOperand !== "") {
+        const percentage =
+          (numericCurrentEntry / 100) * parseFloat(firstOperand);
+        updateDisplays(
+          percentage.toString(),
+          `${firstOperand} ${operator} ${currentEntry} % =`
+        );
+        resetOperands();
+      } else {
+        const percentage = numericCurrentEntry / 100;
+        updateDisplays(percentage.toString(), `${currentEntry}%`);
+        currentEntry = percentage.toString();
+      }
+    }
+  }
 }
 
 function calculate() {

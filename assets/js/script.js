@@ -33,7 +33,11 @@ allClearButton.addEventListener("click", allClear);
 clearEntryButton.addEventListener("click", clearEntry);
 
 function handleOperandClick(value) {
-  currentEntry += value;
+  if (currentEntry !== "0" || value === ".") {
+    currentEntry += value;
+  } else {
+    currentEntry = value;
+  }
   showEntry(currentEntry);
 }
 

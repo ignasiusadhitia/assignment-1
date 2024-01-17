@@ -6,6 +6,13 @@ let secondOperand = "";
 const primaryDisplay = document.getElementById("primaryDisplay");
 const secondaryDisplay = document.getElementById("secondaryDisplay");
 
+const operatorSymbols = {
+  "+": "+",
+  "-": "-",
+  "*": "\u00D7",
+  "/": "\u00F7",
+};
+
 function updateDisplays(primaryValue, secondaryValue) {
   primaryDisplay.innerText = primaryValue;
   secondaryDisplay.innerText = secondaryValue;
@@ -35,6 +42,9 @@ function handleOperatorClick(operation) {
     } else {
       operator = operation;
     }
+
+    const displayOperator = operatorSymbols[operator];
+    updateSecondaryDisplay(displayOperator);
   }
 }
 
@@ -91,11 +101,14 @@ function calculate() {
         ? addCommas(parseFloat(resultValue.toFixed(DECIMAL_PLACES)).toString())
         : undefined;
 
-    updateSecondaryDisplay();
+    const displayOperator = operatorSymbols[operator] || operator;
+    updateSecondaryDisplay(displayOperator);
     updateDisplays(
       resultValue !== undefined ? resultValue.toString() : "ERROR",
       resultValue !== undefined
-        ? `${addCommas(firstOperand)} ${operator} ${addCommas(secondOperand)} =`
+        ? `${addCommas(firstOperand)} ${displayOperator} ${addCommas(
+            secondOperand
+          )} =`
         : ""
     );
     resetOperands();
@@ -108,7 +121,7 @@ function performCalculation() {
       return parseFloat(firstOperand) + parseFloat(secondOperand);
     case "-":
       return parseFloat(firstOperand) - parseFloat(secondOperand);
-    case "x":
+    case "*":
       return parseFloat(firstOperand) * parseFloat(secondOperand);
     case "/":
       return parseFloat(secondOperand) !== 0
@@ -125,7 +138,7 @@ function handleDivisionByZero() {
   return undefined;
 }
 
-function updateSecondaryDisplay() {
+function updateSecondaryDisplay(operatorSymbol) {
   if (secondOperand !== "") {
     const numericSecondOperand = parseFloat(secondOperand);
     const formattedSecondOperand =
@@ -134,9 +147,9 @@ function updateSecondaryDisplay() {
         : secondOperand;
     secondaryDisplay.innerText = `${addCommas(
       firstOperand
-    )} ${operator} ${formattedSecondOperand} =`;
+    )} ${operatorSymbol} ${formattedSecondOperand} =`;
   } else {
-    secondaryDisplay.innerText = `${addCommas(firstOperand)} ${operator}`;
+    secondaryDisplay.innerText = `${addCommas(firstOperand)} ${operatorSymbol}`;
   }
 }
 

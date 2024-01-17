@@ -18,9 +18,11 @@ function handleOperandClick(value) {
     return;
   }
 
-  currentEntry =
-    currentEntry === "0" && value !== "." ? value : currentEntry + value;
-  showEntry(currentEntry);
+  if (currentEntry.length < MAX_DIGITS) {
+    currentEntry =
+      currentEntry === "0" && value !== "." ? value : currentEntry + value;
+    showEntry(currentEntry);
+  }
 }
 
 function handleOperatorClick(operation) {
@@ -153,6 +155,7 @@ function clearEntry() {
 }
 
 const DECIMAL_PLACES = 4;
+const MAX_DIGITS = 12;
 
 const operands = document.querySelectorAll(".operand");
 const operators = document.querySelectorAll(".operator");

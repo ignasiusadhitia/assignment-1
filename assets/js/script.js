@@ -170,3 +170,39 @@ percentButton.addEventListener("click", calculatePercentage);
 resultButton.addEventListener("click", calculate);
 allClearButton.addEventListener("click", allClear);
 clearEntryButton.addEventListener("click", clearEntry);
+
+document.addEventListener("keydown", (event) => {
+  const keyValue = event.key;
+
+  const isNumeric = !isNaN(parseFloat(keyValue)) && isFinite(keyValue);
+  const isOperator = ["+", "-", "*", "/"].includes(keyValue);
+
+  if (isNumeric || keyValue === ".") {
+    handleOperandClick(keyValue);
+  }
+
+  if (isOperator) {
+    handleOperatorClick(keyValue);
+  }
+
+  switch (keyValue) {
+    case "Enter":
+    case "=":
+      calculate();
+      break;
+    case "%":
+      calculatePercentage();
+      break;
+    case "Escape":
+      allClear();
+      break;
+    case "Backspace":
+      clearEntry();
+      break;
+    case "n":
+      negate();
+      break;
+    default:
+      break;
+  }
+});

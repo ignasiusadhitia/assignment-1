@@ -69,7 +69,7 @@ function calculate() {
         resultValue =
           parseFloat(secondOperand) !== 0
             ? parseFloat(firstOperand) / parseFloat(secondOperand)
-            : (alert("Cannot divide by zero"), allClear(), 0);
+            : (alert("Cannot divide by zero"), allClear(), undefined);
         break;
       default:
         return;
@@ -77,8 +77,10 @@ function calculate() {
 
     updateSecondaryDisplay();
     updateDisplays(
-      resultValue.toString(),
-      `${firstOperand} ${operator} ${secondOperand} =`
+      resultValue !== undefined ? resultValue.toString() : "ERROR",
+      resultValue !== undefined
+        ? `${firstOperand} ${operator} ${secondOperand} =`
+        : ""
     );
     resetOperands();
   }

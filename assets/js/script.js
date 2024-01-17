@@ -57,17 +57,19 @@ function calculatePercentage() {
     const numericCurrentEntry = parseFloat(currentEntry);
 
     if (!isNaN(numericCurrentEntry)) {
-      const percentage =
-        firstOperand !== ""
-          ? (numericCurrentEntry / 100) * parseFloat(firstOperand)
-          : numericCurrentEntry / 100;
-      updateDisplays(
-        percentage.toString(),
-        firstOperand !== ""
-          ? `${firstOperand} ${operator} ${currentEntry} % =`
-          : `${currentEntry}%`
-      );
-      resetOperands();
+      if (firstOperand !== "") {
+        const percentage =
+          (numericCurrentEntry / 100) * parseFloat(firstOperand);
+        updateDisplays(
+          percentage.toString(),
+          `${firstOperand} ${operator} ${currentEntry} % =`
+        );
+        resetOperands();
+      } else {
+        const percentage = numericCurrentEntry / 100;
+        updateDisplays(percentage.toString(), `${currentEntry}%`);
+        currentEntry = percentage.toString();
+      }
     }
   }
 }

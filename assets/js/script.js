@@ -58,10 +58,10 @@ function negate() {
     if (parseFloat(currentEntry) === 0) {
       currentEntry = "0";
     }
+    const displayOperator = operatorSymbols[operator] || operator;
+    updateDisplays(currentEntry, "");
+    updateSecondaryDisplay(displayOperator);
   }
-
-  updateDisplays(currentEntry, "");
-  updateSecondaryDisplay();
 }
 
 function calculatePercentage() {

@@ -51,11 +51,15 @@ function handleOperatorClick(operation) {
 }
 
 function negate() {
-  if (currentEntry !== "") {
+  if (currentEntry !== "" && currentEntry !== 0) {
     currentEntry =
       currentEntry.charAt(0) === "-"
         ? currentEntry.slice(1)
         : `-${currentEntry}`;
+
+    if (parseFloat(currentEntry) === 0) {
+      currentEntry = "0";
+    }
   }
 
   updateDisplays(currentEntry, "");

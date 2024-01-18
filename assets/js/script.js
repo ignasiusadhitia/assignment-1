@@ -14,11 +14,16 @@ const operatorSymbols = {
 };
 
 function updateDisplays(primaryValue, secondaryValue, operatorSymbol = "") {
-  primaryDisplay.innerText = primaryValue;
-  secondaryDisplay.innerText =
-    secondaryValue !== ""
-      ? `${addCommas(firstOperand)} ${operatorSymbol} ${secondaryValue}`
-      : `${addCommas(firstOperand)} ${operatorSymbol}`;
+  if (primaryValue === "ERROR") {
+    primaryDisplay.innerText = primaryValue;
+    secondaryDisplay.innerText = secondaryValue !== "" ? secondaryValue : "";
+  } else {
+    primaryDisplay.innerText = primaryValue;
+    secondaryDisplay.innerText =
+      secondaryValue !== ""
+        ? `${addCommas(firstOperand)} ${operatorSymbol} ${secondaryValue} =`
+        : `${addCommas(firstOperand)} ${operatorSymbol}`;
+  }
 }
 
 updateDisplays("", "");
@@ -31,7 +36,6 @@ function handleOperandClick(value) {
   const currentValue = parseFloat(currentEntry + value);
 
   if (value !== "." && currentEntry.replace(".", "").length >= MAX_DIGITS) {
-    // Do not allow more than 10 digits before and after the dot
     return;
   }
 

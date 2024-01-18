@@ -139,7 +139,7 @@ function calculate() {
         }
       }
     } else {
-      updateDisplays("ERROR", "Cannot divide by zero");
+      handleDivisionByZero();
     }
     resetOperands();
   }
@@ -163,9 +163,7 @@ function performCalculation() {
 }
 
 function handleDivisionByZero() {
-  alert("Cannot divide by zero");
-  allClear();
-  return undefined;
+  updateDisplays("ERROR", "Cannot divide by zero");
 }
 
 function updateSecondaryDisplay(operatorSymbol) {

@@ -68,7 +68,7 @@ function handleOperandClick(value) {
   if (currentValue > MAX_VALUE) {
     // Display an error for value limit exceeded
     updateDisplays("ERROR", "Value Limit Exceeded");
-    setTimeout(allClear, 2000);
+    setTimeout(allClear, 1500);
     return;
   }
 
@@ -147,7 +147,7 @@ function calculatePercentage() {
   } else {
     // Display an error for invalid input
     updateDisplays("ERROR", "Invalid input for percentage calculation");
-    setTimeout(allClear, 2000);
+    setTimeout(allClear, 1500);
   }
 }
 
@@ -174,12 +174,12 @@ function calculate() {
       // Check for result length exceeding the limit
       if (Math.abs(resultValue) > maxResultValue) {
         updateDisplays("ERROR", "Result too long");
-        setTimeout(allClear, 2000);
+        setTimeout(allClear, 1500);
       } else {
         // Check for second operand exceeding the limit
         if (Math.abs(parseFloat(secondOperand)) > maxEntryValue) {
           updateDisplays("ERROR", "Value Limit Exceeded");
-          setTimeout(allClear, 2000);
+          setTimeout(allClear, 1500);
         } else {
           // Display the result with proper formating and operator
           const displayOperator = operatorSymbols[operator] || operator;
@@ -222,7 +222,7 @@ function performCalculation() {
 function handleDivisionByZero() {
   // Display an error for division by zero
   updateDisplays("ERROR", "Cannot divide by zero");
-  setTimeout(allClear, 2000);
+  setTimeout(allClear, 1500);
   return;
 }
 

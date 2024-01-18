@@ -1,11 +1,13 @@
-let currentEntry = "";
-let firstOperand = "";
-let operator = "";
-let secondOperand = "";
+// Calculator configuration
+const DECIMAL_PLACES = 2;
+const MAX_DIGITS = 12;
+const MAX_VALUE = 9999999999.99;
 
+//  DOM Elements
 const primaryDisplay = document.getElementById("primaryDisplay");
 const secondaryDisplay = document.getElementById("secondaryDisplay");
 
+// Operator Symbols
 const operatorSymbols = {
   "+": "+",
   "-": "-",
@@ -13,18 +15,29 @@ const operatorSymbols = {
   "/": "\u00F7",
 };
 
+// Calculator State
+let currentEntry = "";
+let firstOperand = "";
+let operator = "";
+let secondOperand = "";
+
+// Update the primary and secondary displays
 function updateDisplays(primaryValue, secondaryValue, operatorSymbol = "") {
   if (primaryValue === "ERROR") {
+    // Display an error message
     primaryDisplay.innerText = primaryValue;
     secondaryDisplay.innerText = secondaryValue !== "" ? secondaryValue : "";
   } else {
+    // Format the secondary value with commas and handle negative values
     const formattedSecondaryValue =
       secondaryValue !== "" && parseFloat(secondaryValue) < 0
         ? `(${addCommas(secondaryValue)})`
         : addCommas(secondaryValue);
 
+    // Add an equal sign if there is a first operand and operator
     const equalSign = firstOperand !== "" && operatorSymbol !== "" ? " =" : "";
 
+    // Update primary and secondary displays
     primaryDisplay.innerText = primaryValue;
     secondaryDisplay.innerText =
       secondaryValue !== ""
@@ -35,47 +48,59 @@ function updateDisplays(primaryValue, secondaryValue, operatorSymbol = "") {
   }
 }
 
+// Initialize displays
 updateDisplays("", "");
 
+// Handle numeric input
 function handleOperandClick(value) {
   if (value === "." && (currentEntry === "" || currentEntry.includes("."))) {
+    // Do not allow multiple dots in a number
     return;
   }
 
   const currentValue = parseFloat(currentEntry + value);
 
   if (value !== "." && currentEntry.replace(".", "").length >= MAX_DIGITS) {
+    // Do not allow more than 10 digits before and after the dot
     return;
   }
 
   if (currentValue > MAX_VALUE) {
+    // Display an error for value limit exceeded
     updateDisplays("ERROR", "Value Limit Exceeded");
     return;
   }
 
+  // Update current entry and show on the primary display
   currentEntry =
     currentEntry === "0" && value !== "." ? value : currentEntry + value;
   showEntry(currentEntry);
 }
 
+// Handle operator input
 function handleOperatorClick(operation) {
   if (currentEntry !== "") {
     if (firstOperand === "") {
+      // Store the first operand and operator
       firstOperand = currentEntry;
       operator = operation;
       updateSecondaryDisplay();
       currentEntry = "";
     } else {
+      // Update the operator
       operator = operation;
     }
 
+    // Display the operator symbol on the secondary display
     const displayOperator = operatorSymbols[operator];
     updateSecondaryDisplay(displayOperator);
   }
 }
 
+// Handle negation button
 function negate() {
   if (currentEntry !== "" && currentEntry !== "0") {
+    // Negate the current entry and update the primary display
     currentEntry =
       currentEntry.charAt(0) === "-"
         ? currentEntry.slice(1)
@@ -84,6 +109,8 @@ function negate() {
     if (parseFloat(currentEntry) === 0) {
       currentEntry = "0";
     }
+
+    // Display the negated value on the primary display
     const displayOperator = operatorSymbols[operator] || operator;
 
     updateDisplays(currentEntry, displayOperator);
@@ -96,6 +123,7 @@ function calculatePercentage() {
 
     if (!isNaN(numericCurrentEntry)) {
       if (firstOperand !== "") {
+        // Calculate percentage and update displays
         const percentage =
           (numericCurrentEntry / 100) * parseFloat(firstOperand);
         updateDisplays(
@@ -105,6 +133,7 @@ function calculatePercentage() {
         );
         resetOperands();
       } else {
+        // Display the percentage of the current entry
         const percentage = numericCurrentEntry / 100;
         updateDisplays(
           addCommas(percentage.toString()),
@@ -113,30 +142,41 @@ function calculatePercentage() {
         currentEntry = percentage.toString();
       }
     }
+  } else {
+    // Display an error for invalid input
+    updateDisplays("ERROR", "Invalid input for percentage calculation");
   }
 }
 
+// Check if calculation is possible
 function shouldCalculate() {
   return firstOperand !== "" && operator !== "";
 }
 
+// Handle calculation
 function calculate() {
   if (currentEntry !== "" && shouldCalculate()) {
     secondOperand = currentEntry;
     let resultValue = performCalculation();
 
+    // Check if the result is defined
     if (resultValue !== undefined) {
+      // Format the result to the specified decimal places
       resultValue = parseFloat(resultValue.toFixed(DECIMAL_PLACES));
 
+      // Set maximum values for result and second operand
       const maxEntryValue = MAX_VALUE;
       const maxResultValue = MAX_VALUE / Math.pow(10, DECIMAL_PLACES);
 
+      // Check for result length exceeding the limit
       if (Math.abs(resultValue) > maxResultValue) {
         updateDisplays("ERROR", "Result too long");
       } else {
+        // Check for second operand exceeding the limit
         if (Math.abs(parseFloat(secondOperand)) > maxEntryValue) {
           updateDisplays("ERROR", "Value Limit Exceeded");
         } else {
+          // Display the result with proper formating and operator
           const displayOperator = operatorSymbols[operator] || operator;
           updateSecondaryDisplay(displayOperator);
 
@@ -148,12 +188,14 @@ function calculate() {
         }
       }
     } else {
+      // Handle division by zero
       handleDivisionByZero();
     }
     resetOperands();
   }
 }
 
+// Perform calculation based on operator
 function performCalculation() {
   switch (operator) {
     case "+":
@@ -171,11 +213,14 @@ function performCalculation() {
   }
 }
 
+// Handle division by zero
 function handleDivisionByZero() {
+  // Display an error for division by zero
   updateDisplays("ERROR", "Cannot divide by zero");
   return;
 }
 
+// Update secondary display with formatted second operand
 function updateSecondaryDisplay(operatorSymbol) {
   if (secondOperand !== "") {
     const numericSecondOperand = parseFloat(secondOperand);
@@ -189,11 +234,13 @@ function updateSecondaryDisplay(operatorSymbol) {
   }
 }
 
+// Show the current entry on the primary display
 function showEntry(value) {
   const indexOfDot = value.indexOf(".");
   let formattedValue;
 
   if (indexOfDot !== -1) {
+    // Format decimal number with commas
     const beforeDot = value.substring(0, indexOfDot);
     const afterDot = value.substring(
       indexOfDot + 1,
@@ -201,18 +248,22 @@ function showEntry(value) {
     );
     formattedValue = addCommas(`${beforeDot}.${afterDot}`);
   } else {
+    // Format integer number with commas
     formattedValue = addCommas(value.slice(0, MAX_DIGITS));
   }
 
+  // Display the formatted value on the primary display
   primaryDisplay.innerText = formattedValue;
 }
 
+// Add commas to a numeric value
 function addCommas(value) {
   const parts = value.toString().split(".");
   parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   return parts.join(".");
 }
 
+// Reset all operands and displays
 function resetOperands() {
   currentEntry = "";
   firstOperand = "";
@@ -220,60 +271,74 @@ function resetOperands() {
   secondOperand = "";
 }
 
+// Reset the calculator to initial state
 function allClear() {
   resetOperands();
   updateDisplays("0", "");
 }
 
+// Clear the current entry
 function clearEntry() {
   currentEntry = "";
   showEntry("0");
 }
 
-const DECIMAL_PLACES = 2;
-const MAX_DIGITS = 12;
-const MAX_VALUE = 9999999999.99;
-
+// Event Listeners for Operand Buttons
 const operands = document.querySelectorAll(".operand");
-const operators = document.querySelectorAll(".operator");
-const negationButton = document.getElementById("negation");
-const percentButton = document.getElementById("percent");
-const resultButton = document.getElementById("=");
-const allClearButton = document.getElementById("ac");
-const clearEntryButton = document.getElementById("c");
-
 operands.forEach((operand) =>
   operand.addEventListener("click", () => handleOperandClick(operand.innerText))
 );
+
+// Event Listeners for Operator Buttons
+const operators = document.querySelectorAll(".operator");
 operators.forEach((operator) =>
   operator.addEventListener("click", () =>
     handleOperatorClick(operator.getAttribute("data-value"))
   )
 );
+
+// Event Listeners for Negation Button
+const negationButton = document.getElementById("negation");
 negationButton.addEventListener("click", negate);
+
+// Event Listeners for Percentage Button
+const percentButton = document.getElementById("percent");
 percentButton.addEventListener("click", calculatePercentage);
+
+// Event Listener for Equals Button
+const resultButton = document.getElementById("=");
 resultButton.addEventListener("click", () => {
   if (shouldCalculate()) {
     calculate();
   }
 });
+
+// Event Listener for All Clear Button
+const allClearButton = document.getElementById("ac");
 allClearButton.addEventListener("click", allClear);
+
+// Event Listener for Clear Entry Button
+const clearEntryButton = document.getElementById("c");
 clearEntryButton.addEventListener("click", clearEntry);
 
+// Event Listeners for Keyboard Inputs
 document.addEventListener("keydown", (event) => {
   const keyValue = event.key;
 
   const isNumeric = !isNaN(parseFloat(keyValue)) && isFinite(keyValue);
   const isOperator = ["+", "-", "*", "/"].includes(keyValue);
 
+  // Handle numeric and decimal point inputs
   if (isNumeric || keyValue === ".") {
     handleOperandClick(keyValue);
   }
 
+  // Handle operator inputs
   if (isOperator) {
     handleOperatorClick(keyValue);
   }
 
+  // Handle special keys
   switch (keyValue) {
     case "Enter":
     case "=":

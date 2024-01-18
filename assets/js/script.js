@@ -18,10 +18,17 @@ function updateDisplays(primaryValue, secondaryValue, operatorSymbol = "") {
     primaryDisplay.innerText = primaryValue;
     secondaryDisplay.innerText = secondaryValue !== "" ? secondaryValue : "";
   } else {
+    const formattedSecondaryValue =
+      secondaryValue !== "" && parseFloat(secondaryValue) < 0
+        ? `(${addCommas(secondaryValue)})`
+        : addCommas(secondaryValue);
+
     primaryDisplay.innerText = primaryValue;
     secondaryDisplay.innerText =
       secondaryValue !== ""
-        ? `${addCommas(firstOperand)} ${operatorSymbol} ${secondaryValue} =`
+        ? `${addCommas(
+            firstOperand
+          )} ${operatorSymbol} ${formattedSecondaryValue}`
         : `${addCommas(firstOperand)} ${operatorSymbol}`;
   }
 }
@@ -77,7 +84,7 @@ function negate() {
     }
     const displayOperator = operatorSymbols[operator] || operator;
 
-    updateDisplays(currentEntry, "");
+    updateDisplays(currentEntry, displayOperator);
   }
 }
 

@@ -103,7 +103,9 @@ function calculate() {
     if (resultValue !== undefined) {
       resultValue = parseFloat(resultValue.toFixed(DECIMAL_PLACES));
 
-      if (Math.abs(resultValue) > 999999999999) {
+      const maxValue = 999999999999 / Math.pow(10, DECIMAL_PLACES);
+
+      if (Math.abs(resultValue) > maxValue) {
         updateDisplays("ERROR", "Result too long");
       } else {
         const displayOperator = operatorSymbols[operator] || operator;
@@ -189,7 +191,7 @@ function clearEntry() {
   showEntry("0");
 }
 
-const DECIMAL_PLACES = 4;
+const DECIMAL_PLACES = 2;
 const MAX_DIGITS = 12;
 
 const operands = document.querySelectorAll(".operand");

@@ -10,12 +10,12 @@ The Calculator App is a versatile calculator designed for basic arithmetic calcu
 
 - **Addition (+):** Perform addition calculations.
 - **Subtraction (-):** Subtract numbers.
-- **Multiplication (x):** Multiply numbers.
-- **Division (/):** Divide numbers.
+- **Multiplication (×):** Multiply numbers.
+- **Division (÷):** Divide numbers.
 
 ### 2. Keyboard Support
 
-- The calculator supports keyboard input for numeric digits (0-9), the decimal point (.), and basic operators (+, -, *, /).
+- The calculator supports keyboard input for numeric digits (0-9), the decimal point (.), and basic operators (+, -, ×, ÷).
 - Keyboard shortcuts include Enter (=) for calculating results, Escape for clearing all, Backspace for clearing the last entry, and "n" for negation.
 
 ### 3. Limit on Digits
@@ -36,7 +36,37 @@ The Calculator App is a versatile calculator designed for basic arithmetic calcu
 
 ### 7. Error Handling
 
-- The calculator handles division by zero, displaying an alert message when attempting to divide by zero.
+The Calculator App includes effective error handling to address exceptional scenarios and maintain a user-friendly experience. Here are the key aspects:
+
+#### 7.1 Division by Zero
+
+- **Scenario:** When attempting to divide by zero.
+- **Handling:** Detects the division by zero condition.
+- **Feedback:** Displays "Cannot divide by zero" on the primary display.
+- **Resolution:** Clears all entries after a brief delay, restoring functionality.
+
+#### 7.2 Value Limit Exceeded
+
+- **Scenario:** Results or operands exceeding specified limits.
+- **Handling:** Identifies values beyond the set limit.
+- **Feedback:** Shows "Value Limit Exceeded" on the primary display.
+- **Resolution:** Automatically clears entries after a brief delay.
+
+#### 7.3 Result Length Limit
+
+- **Scenario:** Excessively long calculated results.
+- **Handling:** Recognizes results surpassing the allowable length.
+- **Feedback:** Presents "Result too long" on the primary display.
+- **Resolution:** Clears entries after a short delay.
+
+#### 7.4 Invalid Percentage Calculation
+
+- **Scenario:** Invalid percentage calculation attempts.
+- **Handling:** Validates input for meaningful percentage calculations.
+- **Feedback:** Displays "Invalid input for percentage calculation."
+- **Resolution:** Clears entries after a brief delay.
+
+These error-handling measures ensure a smooth user experience by providing clear feedback and maintaining a consistent environment for arithmetic calculations.
 
 ### 8. Responsive Design
 
@@ -48,7 +78,7 @@ The Calculator App is a versatile calculator designed for basic arithmetic calcu
    - Click on numeric buttons (0-9) or use the decimal point (.) for numeric input.
 
 2. **Arithmetic Operations:**
-   - Click on operator buttons (+, -, *, /) or use the corresponding keyboard keys.
+   - Click on operator buttons (+, -, ×, ÷) or use the corresponding keyboard keys.
 
 3. **Result Calculation:**
    - Click on the "=" button or press Enter to calculate results.
@@ -65,9 +95,10 @@ The Calculator App is a versatile calculator designed for basic arithmetic calcu
 
 ## Technical Details
 
-- **Decimal Places:** Results are displayed rounded to 4 decimal places.
+- **Decimal Places:** Results are displayed rounded to 2 decimal places.
 - **Maximum Digits:** The calculator allows a maximum of 12 digits for entry.
 - **Number Formatting:** The `addCommas` function is used to format numbers with commas.
+- **Entry and Result Limit:** Entries and calculated results are restricted to 999,999,9999.99 to prevent overflow and maintain precision.
 
 ## Developer Information
 
@@ -98,3 +129,12 @@ The Calculator App is a versatile calculator designed for basic arithmetic calcu
 ## Conclusion
 
 The Calculator App offers a convenient and efficient tool for performing basic arithmetic calculations. Whether using on-screen buttons or keyboard shortcuts, the calculator ensures a seamless and user-friendly experience.
+
+## Limitations
+
+1. **Single Operation:** The calculator currently supports only single operations at a time. Multiple operations in sequence are not supported.
+2. **Percentage Calculation Limitation:** Percentage calculations are performed as a first operand. Invalid percentage input operations are not supported and will display an error message.
+3. **Limited Decimal Precision:** Results are displayed with a fixed decimal precision (default is 2 decimal places). Long decimal values may be truncated.
+4. **No Memory Functionality:** The calculator does not have memory functionality for storing and retrieving values.
+
+Feel free to customize the calculator based on your specific requirements or extend its functionality according to your needs.

@@ -100,21 +100,25 @@ function calculate() {
     secondOperand = currentEntry;
     let resultValue = performCalculation();
 
-    resultValue =
-      resultValue !== undefined
-        ? addCommas(parseFloat(resultValue.toFixed(DECIMAL_PLACES)).toString())
-        : undefined;
+    if (resultValue !== undefined) {
+      resultValue = parseFloat(resultValue.toFixed(DECIMAL_PLACES));
 
-    const displayOperator = operatorSymbols[operator] || operator;
-    updateSecondaryDisplay(displayOperator);
-    updateDisplays(
-      resultValue !== undefined ? resultValue.toString() : "ERROR",
-      resultValue !== undefined
-        ? `${addCommas(firstOperand)} ${displayOperator} ${addCommas(
+      if (Math.abs(resultValue) > 999999999999) {
+        updateDisplays("ERROR", "Result too long");
+      } else {
+        const displayOperator = operatorSymbols[operator] || operator;
+        updateSecondaryDisplay(displayOperator);
+
+        updateDisplays(
+          addCommas(resultValue.toString()),
+          `${addCommas(firstOperand)} ${displayOperator} ${addCommas(
             secondOperand
           )} =`
-        : ""
-    );
+        );
+      }
+    } else {
+      updateDisplays("ERROR", "");
+    }
     resetOperands();
   }
 }

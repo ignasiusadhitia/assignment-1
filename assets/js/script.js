@@ -95,6 +95,7 @@ function handleOperatorClick(operation) {
     // Display the operator symbol on the secondary display
     const displayOperator = operatorSymbols[operator];
     updateSecondaryDisplay(displayOperator);
+    showEntry(currentEntry);
   }
 }
 

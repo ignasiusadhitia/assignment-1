@@ -164,6 +164,7 @@ function performCalculation() {
 
 function handleDivisionByZero() {
   updateDisplays("ERROR", "Cannot divide by zero");
+  return;
 }
 
 function updateSecondaryDisplay(operatorSymbol) {

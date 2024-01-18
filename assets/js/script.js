@@ -25,6 +25,14 @@ function handleOperandClick(value) {
     return;
   }
 
+  const currentValue = parseFloat(currentEntry + value);
+
+  if (currentValue > MAX_VALUE) {
+    updateDisplays("ERROR", "Value Limit Excedeed");
+
+    return;
+  }
+
   if (currentEntry.length < MAX_DIGITS) {
     currentEntry =
       currentEntry === "0" && value !== "." ? value : currentEntry + value;
@@ -193,6 +201,7 @@ function clearEntry() {
 
 const DECIMAL_PLACES = 2;
 const MAX_DIGITS = 12;
+const MAX_VALUE = 9999999999.99;
 
 const operands = document.querySelectorAll(".operand");
 const operators = document.querySelectorAll(".operator");

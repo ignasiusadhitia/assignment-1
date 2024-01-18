@@ -72,6 +72,9 @@ These error-handling measures ensure a smooth user experience by providing clear
 
 - The calculator features a responsive layout for a consistent user experience across different devices and screen sizes.
 
+### 9. Operator Modification
+User can modify the operator even after setting the `firstOperand`, `operator`, and `secondOperand`. This allow flexibility in adjusting the operation without resetting the entire calculation.
+
 ## Usage
 
 1. **Numeric Entry:**
@@ -98,7 +101,7 @@ These error-handling measures ensure a smooth user experience by providing clear
 - **Decimal Places:** Results are displayed rounded to 2 decimal places.
 - **Maximum Digits:** The calculator allows a maximum of 12 digits for entry.
 - **Number Formatting:** The `addCommas` function is used to format numbers with commas.
-- **Entry and Result Limit:** Entries and calculated results are restricted to 999,999,9999.99 to prevent overflow and maintain precision.
+- **Entry and Result Limit:** Entries and calculated results are restricted to 9,999,999,999.99 to prevent overflow and maintain precision.
 
 ## Developer Information
 
@@ -136,5 +139,3 @@ The Calculator App offers a convenient and efficient tool for performing basic a
 2. **Percentage Calculation Limitation:** Percentage calculations are performed as a first operand. Invalid percentage input operations are not supported and will display an error message.
 3. **Limited Decimal Precision:** Results are displayed with a fixed decimal precision (default is 2 decimal places). Long decimal values may be truncated.
 4. **No Memory Functionality:** The calculator does not have memory functionality for storing and retrieving values.
-
-Feel free to customize the calculator based on your specific requirements or extend its functionality according to your needs.

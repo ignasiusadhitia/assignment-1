@@ -23,12 +23,14 @@ function updateDisplays(primaryValue, secondaryValue, operatorSymbol = "") {
         ? `(${addCommas(secondaryValue)})`
         : addCommas(secondaryValue);
 
+    const equalSign = firstOperand !== "" && operatorSymbol !== "" ? " =" : "";
+
     primaryDisplay.innerText = primaryValue;
     secondaryDisplay.innerText =
       secondaryValue !== ""
         ? `${addCommas(
             firstOperand
-          )} ${operatorSymbol} ${formattedSecondaryValue}`
+          )} ${operatorSymbol} ${formattedSecondaryValue}${equalSign}`
         : `${addCommas(firstOperand)} ${operatorSymbol}`;
   }
 }

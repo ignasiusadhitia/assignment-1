@@ -13,9 +13,12 @@ const operatorSymbols = {
   "/": "\u00F7",
 };
 
-function updateDisplays(primaryValue, secondaryValue) {
+function updateDisplays(primaryValue, secondaryValue, operatorSymbol = "") {
   primaryDisplay.innerText = primaryValue;
-  secondaryDisplay.innerText = secondaryValue;
+  secondaryDisplay.innerText =
+    secondaryValue !== ""
+      ? `${addCommas(firstOperand)} ${operatorSymbol} ${secondaryValue}`
+      : `${addCommas(firstOperand)} ${operatorSymbol}`;
 }
 
 updateDisplays("", "");
@@ -27,17 +30,19 @@ function handleOperandClick(value) {
 
   const currentValue = parseFloat(currentEntry + value);
 
-  if (currentValue > MAX_VALUE) {
-    updateDisplays("ERROR", "Value Limit Excedeed");
-
+  if (value !== "." && currentEntry.replace(".", "").length >= MAX_DIGITS) {
+    // Do not allow more than 10 digits before and after the dot
     return;
   }
 
-  if (currentEntry.length < MAX_DIGITS) {
-    currentEntry =
-      currentEntry === "0" && value !== "." ? value : currentEntry + value;
-    showEntry(currentEntry);
+  if (currentValue > MAX_VALUE) {
+    updateDisplays("ERROR", "Value Limit Exceeded");
+    return;
   }
+
+  currentEntry =
+    currentEntry === "0" && value !== "." ? value : currentEntry + value;
+  showEntry(currentEntry);
 }
 
 function handleOperatorClick(operation) {
@@ -67,8 +72,8 @@ function negate() {
       currentEntry = "0";
     }
     const displayOperator = operatorSymbols[operator] || operator;
+
     updateDisplays(currentEntry, "");
-    updateSecondaryDisplay(displayOperator);
   }
 }
 
@@ -82,9 +87,8 @@ function calculatePercentage() {
           (numericCurrentEntry / 100) * parseFloat(firstOperand);
         updateDisplays(
           addCommas(percentage.toString()),
-          `${addCommas(firstOperand)} ${operator} ${addCommas(
-            currentEntry
-          )} % =`
+          addCommas(currentEntry),
+          `${operator} ${addCommas(firstOperand)}% =`
         );
         resetOperands();
       } else {
@@ -111,23 +115,27 @@ function calculate() {
     if (resultValue !== undefined) {
       resultValue = parseFloat(resultValue.toFixed(DECIMAL_PLACES));
 
-      const maxValue = 999999999999 / Math.pow(10, DECIMAL_PLACES);
+      const maxEntryValue = MAX_VALUE;
+      const maxResultValue = MAX_VALUE / Math.pow(10, DECIMAL_PLACES);
 
-      if (Math.abs(resultValue) > maxValue) {
+      if (Math.abs(resultValue) > maxResultValue) {
         updateDisplays("ERROR", "Result too long");
       } else {
-        const displayOperator = operatorSymbols[operator] || operator;
-        updateSecondaryDisplay(displayOperator);
+        if (Math.abs(parseFloat(secondOperand)) > maxEntryValue) {
+          updateDisplays("ERROR", "Value Limit Exceeded");
+        } else {
+          const displayOperator = operatorSymbols[operator] || operator;
+          updateSecondaryDisplay(displayOperator);
 
-        updateDisplays(
-          addCommas(resultValue.toString()),
-          `${addCommas(firstOperand)} ${displayOperator} ${addCommas(
-            secondOperand
-          )} =`
-        );
+          updateDisplays(
+            addCommas(resultValue.toString()),
+            addCommas(secondOperand),
+            displayOperator
+          );
+        }
       }
     } else {
-      updateDisplays("ERROR", "");
+      updateDisplays("ERROR", "Cannot divide by zero");
     }
     resetOperands();
   }
@@ -162,17 +170,28 @@ function updateSecondaryDisplay(operatorSymbol) {
     const formattedSecondOperand =
       !isNaN(numericSecondOperand) && numericSecondOperand < 0
         ? `(${addCommas(secondOperand)})`
-        : secondOperand;
-    secondaryDisplay.innerText = `${addCommas(
-      firstOperand
-    )} ${operatorSymbol} ${formattedSecondOperand} =`;
+        : addCommas(secondOperand);
+    updateDisplays("", formattedSecondOperand, operatorSymbol);
   } else {
-    secondaryDisplay.innerText = `${addCommas(firstOperand)} ${operatorSymbol}`;
+    updateDisplays("", "", operatorSymbol);
   }
 }
 
 function showEntry(value) {
-  const formattedValue = addCommas(value.slice(0, MAX_DIGITS));
+  const indexOfDot = value.indexOf(".");
+  let formattedValue;
+
+  if (indexOfDot !== -1) {
+    const beforeDot = value.substring(0, indexOfDot);
+    const afterDot = value.substring(
+      indexOfDot + 1,
+      indexOfDot + 1 + DECIMAL_PLACES
+    );
+    formattedValue = addCommas(`${beforeDot}.${afterDot}`);
+  } else {
+    formattedValue = addCommas(value.slice(0, MAX_DIGITS));
+  }
+
   primaryDisplay.innerText = formattedValue;
 }
 

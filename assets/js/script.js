@@ -289,6 +289,18 @@ function clearEntry() {
   showEntry("0");
 }
 
+// Highlight special keys
+function highlightSpecialKey(id) {
+  const button = document.getElementById(id);
+
+  if (button) {
+    button.classList.add(`${id}-active`);
+    setTimeout(() => {
+      button.classList.remove(`${id}-active`);
+    }, 100);
+  }
+}
+
 // Event Listeners for Operand Buttons
 const operands = document.querySelectorAll(".operand");
 operands.forEach((operand) =>
@@ -337,11 +349,31 @@ document.addEventListener("keydown", (event) => {
   // Handle numeric and decimal point inputs
   if (isNumeric || keyValue === ".") {
     handleOperandClick(keyValue);
+
+    // Highlight corresponding button
+    const button = document.querySelector(`[data-value="${keyValue}"]`);
+
+    if (button) {
+      button.classList.add("operand-active");
+      setTimeout(() => {
+        button.classList.remove("operand-active");
+      }, 100);
+    }
   }
 
   // Handle operator inputs
   if (isOperator) {
     handleOperatorClick(keyValue);
+
+    // Highlight corresponding button
+    const button = document.querySelector(`[data-value="${keyValue}"]`);
+
+    if (button) {
+      button.classList.add("operator-active");
+      setTimeout(() => {
+        button.classList.remove("operator-active");
+      }, 100);
+    }
   }
 
   // Handle special keys
@@ -349,18 +381,23 @@ document.addEventListener("keydown", (event) => {
     case "Enter":
     case "=":
       calculate();
+      highlightSpecialKey("equal");
       break;
     case "%":
       calculatePercentage();
+      highlightSpecialKey("percent");
       break;
     case "Escape":
       allClear();
+      highlightSpecialKey("ac");
       break;
     case "Backspace":
       clearEntry();
+      highlightSpecialKey("c");
       break;
     case "n":
       negate();
+      highlightSpecialKey("negation");
       break;
     default:
       break;

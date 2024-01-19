@@ -1,7 +1,7 @@
 // Calculator configuration
-const DECIMAL_PLACES = 2;
+const DECIMAL_PLACES = 4;
 const MAX_DIGITS = 12;
-const MAX_VALUE = 9999999999.99;
+const MAX_VALUE = 99999999.9999;
 
 //  DOM Elements
 const primaryDisplay = document.getElementById("primaryDisplay");

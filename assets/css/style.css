@@ -1,14 +1,24 @@
 body {
-  background: rgb(231, 241, 255);
+  /* background: rgb(231, 241, 255);
   background: linear-gradient(
     135deg,
     rgba(231, 241, 255, 1) 33%,
     rgba(158, 197, 254, 1) 99%
+  ); */
+  /* FOR DARKMODE */
+  background: rgb(231, 241, 255);
+  background: linear-gradient(
+    135deg,
+    rgba(73, 80, 87, 1) 33%,
+    rgba(52, 58, 64, 1) 99%
   );
 }
 
 .card {
-  background: rgba(231, 241, 255, 0.2);
+  /* background: rgba(231, 241, 255, 0.2); */
+  /* FOR DARKMODE */
+  /* background: rgba(52, 58, 64, 0.2); */
+  background-color: rgba(33, 37, 41, 0.2);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
 }
@@ -24,11 +34,15 @@ body {
 }
 
 #primaryDisplay {
-  color: #0d6efd;
+  /* color: #0d6efd; */
+  /* FOR DARKMODE */
+  color: #f8f9fa;
 }
 
 #secondaryDisplay {
-  color: #6ea8fe;
+  /* color: #6ea8fe; */
+  /* FOR DARKMODE */
+  color: #adb5bd;
 }
 
 .keys-wrapper {
@@ -42,16 +56,22 @@ body {
 .operator,
 #percent,
 #negation {
-  color: #0d6efd;
-  background-color: #e7f1ff;
+  /* color: #0d6efd;
+  background-color: #e7f1ff; */
+  /* FOR DARKMODE */
+  color: #f8f9fa;
+  background-color: #495057;
   border: none;
 }
 
 .operator:hover,
 #percent:hover,
 #negation:hover {
-  color: #e7f1ff;
-  background-color: #6ea8fe;
+  /* color: #e7f1ff;
+  background-color: #6ea8fe; */
+  /* FOR DARKMODE */
+  color: #343a40;
+  background-color: #adb5bd;
 }
 
 .operator-active,
@@ -60,36 +80,53 @@ body {
 .operator:active,
 #percent:active,
 #negation:active {
-  color: #e7f1ff;
+  /* color: #e7f1ff;
   background-color: #6ea8fe !important;
   -webkit-box-shadow: 0 0.125rem 0.25rem rgba(8, 66, 152, 0.5);
   -moz-box-shadow: 0 0.125rem 0.25rem rgba(8, 66, 152, 0.5);
-  box-shadow: 0 0.125rem 0.25rem rgba(8, 66, 152, 0.5);
+  box-shadow: 0 0.125rem 0.25rem rgba(8, 66, 152, 0.5); */
+  /* FOR DARKMODE */
+  color: #343a40 !important;
+  background-color: #f8f9fa !important;
+  -webkit-box-shadow: 0 0.125rem 0.25rem rgb(33, 37, 41, 0.5);
+  -moz-box-shadow: 0 0.125rem 0.25rem rgb(33, 37, 41, 0.5);
+  box-shadow: 0 0.125rem 0.25rem rgb(33, 37, 41, 0.5);
 }
 
 .operand {
-  color: #0d6efd;
-  background-color: #f8f9fa;
+  /* color: #0d6efd;
+  background-color: #f8f9fa; */
+  /* FOR DARKMODE */
+  color: #f8f9fa;
+  background-color: #343a40;
   border: none;
 }
 
 .operand:hover {
-  color: #f8f9fa;
+  color: #343a40;
   background-color: #adb5bd;
 }
 
 .operand-active,
 .operand:active {
-  color: #f8f9fa;
-  background-color: #adb5bd !important;
-  -webkit-box-shadow: 0 0.125rem 0.25rem rgba(73, 80, 87, 0.5);
+  /* color: #212529 !important;
+  background-color: #ced4da !important; */
+  /* -webkit-box-shadow: 0 0.125rem 0.25rem rgba(73, 80, 87, 0.5);
   -moz-box-shadow: 0 0.125rem 0.25rem rgba(73, 80, 87, 0.5);
-  box-shadow: 0 0.125rem 0.25rem rgba(73, 80, 87, 0.5);
+  box-shadow: 0 0.125rem 0.25rem rgba(73, 80, 87, 0.5); */
+  /* FOR DARKMODE */
+  color: #343a40 !important;
+  background-color: #f8f9fa !important;
+  -webkit-box-shadow: 0 0.125rem 0.25rem rgb(33, 37, 41, 0.5);
+  -moz-box-shadow: 0 0.125rem 0.25rem rgb(33, 37, 41, 0.5);
+  box-shadow: 0 0.125rem 0.25rem rgb(33, 37, 41, 0.5);
 }
 
 #ac,
 #c {
-  color: #f8d7da;
+  /* color: #f8d7da; */
+  /* FOR DARKMODE */
+  color: #f8f9fa;
   background-color: #dc3545;
   border: none;
 }
@@ -97,7 +134,9 @@ body {
 #ac:hover,
 #c:hover {
   color: #dc3545;
-  background-color: #f8d7da;
+  /* background-color: #f8d7da; */
+  /* FOR DARKMODE */
+  background-color: #adb5bd !important;
 }
 
 .ac-active,
@@ -105,30 +144,45 @@ body {
 #ac:active,
 #c:active {
   color: #dc3545;
-  background-color: #f8d7da !important;
-  -webkit-box-shadow: 0 0.125rem 0.25rem rgba(132, 32, 41, 0.5);
+  /* background-color: #f8d7da !important; */
+  /* -webkit-box-shadow: 0 0.125rem 0.25rem rgba(132, 32, 41, 0.5);
   -moz-box-shadow: 0 0.125rem 0.25rem rgba(132, 32, 41, 0.5);
-  box-shadow: 0 0.125rem 0.25rem rgba(132, 32, 41, 0.5);
+  box-shadow: 0 0.125rem 0.25rem rgba(132, 32, 41, 0.5); */
+  /* FOR DARKMODE */
+  background-color: #f8f9fa !important;
+  -webkit-box-shadow: 0 0.125rem 0.25rem rgb(33, 37, 41, 0.5);
+  -moz-box-shadow: 0 0.125rem 0.25rem rgb(33, 37, 41, 0.5);
+  box-shadow: 0 0.125rem 0.25rem rgb(33, 37, 41, 0.5);
 }
 
 #equal {
-  color: #e7f1ff;
+  /* color: #e7f1ff;
+  background-color: #0d6efd; */
+  /* FOR DARKMODE */
+  color: #f8f9fa;
   background-color: #0d6efd;
   border: none;
 }
 
 #equal:hover {
   color: #0d6efd;
-  background-color: #9ec5fe;
+  /* background-color: #9ec5fe; */
+  /* FOR DARKMODE */
+  background-color: #adb5bd !important;
 }
 
 .equal-active,
 #equal:active {
   color: #0d6efd;
-  background-color: #9ec5fe !important;
-  -webkit-box-shadow: 0 0.125rem 0.25rem rgba(8, 66, 152, 0.5);
+  /* background-color: #9ec5fe !important; */
+  /* -webkit-box-shadow: 0 0.125rem 0.25rem rgba(8, 66, 152, 0.5);
   -moz-box-shadow: 0 0.125rem 0.25rem rgba(8, 66, 152, 0.5);
-  box-shadow: 0 0.125rem 0.25rem rgba(8, 66, 152, 0.5);
+  box-shadow: 0 0.125rem 0.25rem rgba(8, 66, 152, 0.5); */
+  /* FOR DARKMODE */
+  background-color: #f8f9fa !important;
+  -webkit-box-shadow: 0 0.125rem 0.25rem rgb(33, 37, 41, 0.5);
+  -moz-box-shadow: 0 0.125rem 0.25rem rgb(33, 37, 41, 0.5);
+  box-shadow: 0 0.125rem 0.25rem rgb(33, 37, 41, 0.5);
 }
 
 .btn {

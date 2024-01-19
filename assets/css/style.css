@@ -1,3 +1,21 @@
+:root {
+}
+
+body {
+  background: rgb(231, 241, 255);
+  background: linear-gradient(
+    135deg,
+    rgba(231, 241, 255, 1) 33%,
+    rgba(158, 197, 254, 1) 99%
+  );
+}
+
+.card {
+  background: rgba(231, 241, 255, 0.2);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
 .card,
 .keys-wrapper {
   width: fit-content;
@@ -6,10 +24,100 @@
 
 .display-wrapper {
   width: 208px;
+  color: #0d6efd;
+}
+
+.keys-wrapper {
+  background-color: hsla(202, 100, 95, 20%);
 }
 
 .keys-row {
   width: fit-content;
+}
+
+.operator,
+#percent,
+#negation {
+  color: #0d6efd;
+  background-color: #e7f1ff;
+  border: none;
+}
+
+.operator:hover,
+#percent:hover,
+#negation:hover {
+  color: #e7f1ff;
+  background-color: #6ea8fe;
+}
+
+.operator:active,
+#percent:active,
+#negation:active {
+  color: #e7f1ff;
+  background-color: #6ea8fe !important;
+  -webkit-box-shadow: 0 0.125rem 0.25rem rgba(8, 66, 152, 0.5);
+  -moz-box-shadow: 0 0.125rem 0.25rem rgba(8, 66, 152, 0.5);
+  box-shadow: 0 0.125rem 0.25rem rgba(8, 66, 152, 0.5);
+}
+
+.operand {
+  color: #0d6efd;
+  background-color: #f8f9fa;
+  border: none;
+}
+
+.operand:hover {
+  color: #f8f9fa;
+  background-color: #adb5bd;
+}
+
+.operand:active {
+  color: #f8f9fa;
+  background-color: #adb5bd !important;
+  -webkit-box-shadow: 0 0.125rem 0.25rem rgba(73, 80, 87, 0.5);
+  -moz-box-shadow: 0 0.125rem 0.25rem rgba(73, 80, 87, 0.5);
+  box-shadow: 0 0.125rem 0.25rem rgba(73, 80, 87, 0.5);
+}
+
+#ac,
+#c {
+  color: #f8d7da;
+  background-color: #dc3545;
+  border: none;
+}
+
+#ac:hover,
+#c:hover {
+  color: #dc3545;
+  background-color: #f8d7da;
+}
+
+#ac:active,
+#c:active {
+  color: #dc3545;
+  background-color: #f8d7da !important;
+  -webkit-box-shadow: 0 0.125rem 0.25rem rgba(132, 32, 41, 0.5);
+  -moz-box-shadow: 0 0.125rem 0.25rem rgba(132, 32, 41, 0.5);
+  box-shadow: 0 0.125rem 0.25rem rgba(132, 32, 41, 0.5);
+}
+
+#equal {
+  color: #e7f1ff;
+  background-color: #0d6efd;
+  border: none;
+}
+
+#equal:hover {
+  color: #0d6efd;
+  background-color: #9ec5fe;
+}
+
+#equal:active {
+  color: #0d6efd;
+  background-color: #9ec5fe !important;
+  -webkit-box-shadow: 0 0.125rem 0.25rem rgba(8, 66, 152, 0.5);
+  -moz-box-shadow: 0 0.125rem 0.25rem rgba(8, 66, 152, 0.5);
+  box-shadow: 0 0.125rem 0.25rem rgba(8, 66, 152, 0.5);
 }
 
 .btn {

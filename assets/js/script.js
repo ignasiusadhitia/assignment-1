@@ -312,7 +312,7 @@ const percentButton = document.getElementById("percent");
 percentButton.addEventListener("click", calculatePercentage);
 
 // Event Listener for Equals Button
-const resultButton = document.getElementById("=");
+const resultButton = document.getElementById("equal");
 resultButton.addEventListener("click", () => {
   if (shouldCalculate()) {
     calculate();

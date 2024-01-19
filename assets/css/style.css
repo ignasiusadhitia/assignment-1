@@ -27,6 +27,10 @@ body {
   color: #0d6efd;
 }
 
+#secondaryDisplay {
+  color: #6ea8fe;
+}
+
 .keys-wrapper {
   background-color: hsla(202, 100, 95, 20%);
 }

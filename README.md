@@ -102,7 +102,7 @@ When users input entries using their keyboard, the corresponding key on the calc
 - **Decimal Places:** Results are displayed rounded to 4 decimal places.
 - **Maximum Digits:** The calculator allows a maximum of 12 digits for entry.
 - **Number Formatting:** The `addCommas` function is used to format numbers with commas.
-- **Entry and Result Limit:** Entries and calculated results are restricted to 99,999,999.9999 to prevent overflow and maintain precision.
+- **Entry and Result Limit:** Entries and calculated results are restricted to 9,999,999,999.99 to prevent overflow and maintain precision.
 
 ## Developer Information
 

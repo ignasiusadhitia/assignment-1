@@ -1,3 +1,5 @@
+Certainly! Here's the updated documentation with the new feature:
+
 # Calculator App Documentation
 
 ## Introduction
@@ -66,12 +68,13 @@ The Calculator App includes effective error handling to address exceptional scen
 - **Feedback:** Displays "Invalid input for percentage calculation."
 - **Resolution:** Clears entries after a brief delay.
 
-These error-handling measures ensure a smooth user experience by providing clear feedback and maintaining a consistent environment for arithmetic calculations.
-
 ### 8. Operator Modification
-User can modify the operator even after setting the `firstOperand`, `operator`, and `secondOperand`. This allow flexibility in adjusting the operation without resetting the entire calculation.
+User can modify the operator even after setting the `firstOperand`, `operator`, and `secondOperand`. This allows flexibility in adjusting the operation without resetting the entire calculation.
 
-### 9. Responsive Design
+### 9. Keyboard Highlighting
+When users input entries using their keyboard, the corresponding key on the calculator will be highlighted. Numeric and decimal point inputs will highlight the respective operand buttons, while operator inputs will highlight the corresponding operator buttons. Special keys such as Enter, %, Escape, Backspace, and n will also be highlighted on the calculator interface.
+
+### 10. Responsive Design
 
 - The calculator features a responsive layout for a consistent user experience across different devices and screen sizes.
 

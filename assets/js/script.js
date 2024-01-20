@@ -413,21 +413,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
   function updateDarkMode() {
     const componentsToUpdate = [
       document.body,
-      document.querySelector(".card"),
-      document.getElementById("primaryDisplay"),
-      document.getElementById("secondaryDisplay"),
       ...document.querySelectorAll(
-        ".operator, #percent, #negation, .operator:hover, #percent:hover, #negation:hover, .operator-active, .percent-active, .negation-active, .operator:active, #percent:active, #negation:active"
+        ".card, #primaryDisplay, #secondaryDisplay, .operator, #percent, #negation, .operator:hover, #percent:hover, #negation:hover, .operator-active, .percent-active, .negation-active, .operator:active, #percent:active, #negation:active,.operand, .operand:hover, .operand-active, .operand:active, #ac, #c, #ac:hover, #c:hover, .ac-active, .c-active, #ac:active, #c:active, .checkbox-label, #equal, #equal:hover, #equal:active"
       ),
-      ...document.querySelectorAll(
-        ".operand, .operand:hover, .operand-active, .operand:active"
-      ),
-      ...document.querySelectorAll(
-        "#ac, #c, #ac:hover, #c:hover, .ac-active, .c-active, #ac:active, #c:active"
-      ),
-      document.getElementById("equal"),
-      document.getElementById("equal:hover"),
-      document.getElementById("equal:active"),
     ];
 
     if (darkModeToggle.checked) {

@@ -67,12 +67,18 @@ The Calculator App includes effective error handling to address exceptional scen
 - **Resolution:** Clears entries after a brief delay.
 
 ### 8. Operator Modification
-User can modify the operator even after setting the `firstOperand`, `operator`, and `secondOperand`. This allows flexibility in adjusting the operation without resetting the entire calculation.
+
+Users can modify the operator even after setting the `firstOperand`, `operator`, and `secondOperand`. This allows flexibility in adjusting the operation without resetting the entire calculation.
 
 ### 9. Keyboard Highlighting
+
 When users input entries using their keyboard, the corresponding key on the calculator will be highlighted. Numeric and decimal point inputs will highlight the respective operand buttons, while operator inputs will highlight the corresponding operator buttons. Special keys such as Enter, %, Escape, Backspace, and n will also be highlighted on the calculator interface.
 
-### 10. Responsive Design
+### 10. Dark Mode Toggle
+
+The app includes a dark mode toggle switch to enhance user experience in different lighting conditions. Users can enable or disable dark mode by clicking the toggle switch or pressing "d" on the keyboard.
+
+### 11. Responsive Design
 
 - The calculator features a responsive layout for a consistent user experience across different devices and screen sizes.
 
@@ -93,7 +99,10 @@ When users input entries using their keyboard, the corresponding key on the calc
 5. **Negation:**
    - Click on the "+/-" button or press "n" to negate a number.
 
-6. **Clearing Entry:**
+6. **Dark Mode Toggle:**
+   - Click on the dark mode toggle switch or press "d" to switch between dark and light modes.
+
+7. **Clearing Entry:**
    - Click on the "C" button or press Backspace to clear the last entry.
    - Click on the "AC" button or press Escape to clear all entries.
 
@@ -105,6 +114,11 @@ When users input entries using their keyboard, the corresponding key on the calc
 - **Entry and Result Limit:** Entries and calculated results are restricted to 9,999,999,999.99 to prevent overflow and maintain precision.
 
 ## Developer Information
+
+- **Calculator Configuration:**
+  - `DECIMAL_PLACES`: Specifies the decimal places for result display.
+  - `MAX_DIGITS`: Defines the maximum number of digits allowed for entry.
+  - `MAX_VALUE`: Sets the maximum value for entries and results.
 
 - **Variables:**
   - `currentEntry`: Holds the current numeric entry.
@@ -129,10 +143,19 @@ When users input entries using their keyboard, the corresponding key on the calc
   - `resetOperands()`: Resets all operands and the operator.
   - `allClear()`: Clears all entries.
   - `clearEntry()`: Clears the last entry.
+  - `highlightSpecialKey(id)`: Highlights special keys during keyboard input.
+  - `updateDarkMode()`: Updates the dark mode state based on the toggle switch.
+  - `toggleDarkMode()`: Updates the dark mode state based on the key press.
+
+- **Event Listeners:**
+  - Event listeners are set up for operand buttons, operator buttons, negation button, percentage button, equals button, all-clear button, clear-entry button, and keyboard inputs.
+
+- **Dark Mode Toggle:**
+  - Users can switch between dark and light modes using the dark mode toggle switch or by pressing "d" on the keyboard.
 
 ## Conclusion
 
-The Calculator App offers a convenient and efficient tool for performing basic arithmetic calculations. Whether using on-screen buttons or keyboard shortcuts, the calculator ensures a seamless and user-friendly experience.
+The Calculator App offers a convenient and efficient tool for performing basic arithmetic calculations. Whether using on-screen buttons or keyboard shortcuts, the calculator ensures a seamless and user-friendly experience, with additional features such as dark mode for improved visibility.
 
 ## Limitations
 

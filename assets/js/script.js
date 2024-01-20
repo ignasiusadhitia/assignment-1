@@ -403,3 +403,54 @@ document.addEventListener("keydown", (event) => {
       break;
   }
 });
+
+document.addEventListener("DOMContentLoaded", (event) => {
+  // Get the dark mode toggle switch and check local storage
+  const darkModeToggle = document.getElementById("darkModeToggle");
+  const savedDarkMode = localStorage.getItem("darkMode");
+
+  // Function to update dark mode state
+  function updateDarkMode() {
+    const componentsToUpdate = [
+      document.body,
+      document.querySelector(".card"),
+      document.getElementById("primaryDisplay"),
+      document.getElementById("secondaryDisplay"),
+      ...document.querySelectorAll(
+        ".operator, #percent, #negation, .operator:hover, #percent:hover, #negation:hover, .operator-active, .percent-active, .negation-active, .operator:active, #percent:active, #negation:active"
+      ),
+      ...document.querySelectorAll(
+        ".operand, .operand:hover, .operand-active, .operand:active"
+      ),
+      ...document.querySelectorAll(
+        "#ac, #c, #ac:hover, #c:hover, .ac-active, .c-active, #ac:active, #c:active"
+      ),
+      document.getElementById("equal"),
+      document.getElementById("equal:hover"),
+      document.getElementById("equal:active"),
+    ];
+
+    if (darkModeToggle.checked) {
+      componentsToUpdate.forEach((component) =>
+        component?.classList?.add("dark-mode")
+      );
+    } else {
+      componentsToUpdate.forEach((component) =>
+        component?.classList?.remove("dark-mode")
+      );
+    }
+
+    localStorage.setItem("darkMode", darkModeToggle.checked);
+  }
+
+  // Event listener for the dark mode toggle switch
+  darkModeToggle.addEventListener("change", updateDarkMode);
+
+  // Set the initial dark mode state based on local storage
+  if (savedDarkMode === "true") {
+    darkModeToggle.checked = true;
+  }
+
+  // Apply the dark mode on page load
+  updateDarkMode();
+});

@@ -1,11 +1,14 @@
+/* Body Styles */
 body {
-  /* background: rgb(231, 241, 255);
+  background: rgb(231, 241, 255);
   background: linear-gradient(
     135deg,
     rgba(231, 241, 255, 1) 33%,
     rgba(158, 197, 254, 1) 99%
-  ); */
-  /* FOR DARKMODE */
+  );
+}
+
+body.dark-mode {
   background: rgb(231, 241, 255);
   background: linear-gradient(
     135deg,
@@ -14,11 +17,15 @@ body {
   );
 }
 
+/* Card Styles */
 .card {
-  /* background: rgba(231, 241, 255, 0.2); */
-  /* FOR DARKMODE */
-  /* background: rgba(52, 58, 64, 0.2); */
-  background-color: rgba(33, 37, 41, 0.2);
+  background: rgba(231, 241, 255, 0.2);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.card.dark-mode {
+  background: rgba(33, 37, 41, 0.2);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
 }
@@ -33,18 +40,24 @@ body {
   width: 208px;
 }
 
+/* Display Styles */
 #primaryDisplay {
-  /* color: #0d6efd; */
-  /* FOR DARKMODE */
+  color: #0d6efd;
+}
+
+#primaryDisplay.dark-mode {
   color: #f8f9fa;
 }
 
 #secondaryDisplay {
-  /* color: #6ea8fe; */
-  /* FOR DARKMODE */
+  color: #6ea8fe;
+}
+
+#secondaryDisplay.dark-mode {
   color: #adb5bd;
 }
 
+/* Keys Styles */
 .keys-wrapper {
   background-color: hsla(202, 100, 95, 20%);
 }
@@ -53,12 +66,18 @@ body {
   width: fit-content;
 }
 
+/* Operator Styles */
 .operator,
 #percent,
 #negation {
-  /* color: #0d6efd;
-  background-color: #e7f1ff; */
-  /* FOR DARKMODE */
+  color: #0d6efd;
+  background-color: #e7f1ff;
+  border: none;
+}
+
+.operator.dark-mode,
+#percent.dark-mode,
+#negation.dark-mode {
   color: #f8f9fa;
   background-color: #495057;
   border: none;
@@ -67,9 +86,13 @@ body {
 .operator:hover,
 #percent:hover,
 #negation:hover {
-  /* color: #e7f1ff;
-  background-color: #6ea8fe; */
-  /* FOR DARKMODE */
+  color: #e7f1ff;
+  background-color: #6ea8fe;
+}
+
+.operator:hover.dark-mode,
+#percent:hover.dark-mode,
+#negation:hover.dark-mode {
   color: #343a40;
   background-color: #adb5bd;
 }
@@ -80,12 +103,19 @@ body {
 .operator:active,
 #percent:active,
 #negation:active {
-  /* color: #e7f1ff;
+  color: #e7f1ff;
   background-color: #6ea8fe !important;
   -webkit-box-shadow: 0 0.125rem 0.25rem rgba(8, 66, 152, 0.5);
   -moz-box-shadow: 0 0.125rem 0.25rem rgba(8, 66, 152, 0.5);
-  box-shadow: 0 0.125rem 0.25rem rgba(8, 66, 152, 0.5); */
-  /* FOR DARKMODE */
+  box-shadow: 0 0.125rem 0.25rem rgba(8, 66, 152, 0.5);
+}
+
+.operator-active.dark-mode,
+.percent-active.dark-mode,
+.negation-active.dark-mode,
+.operator:active.dark-mode,
+#percent:active.dark-mode,
+#negation:active.dark-mode {
   color: #343a40 !important;
   background-color: #f8f9fa !important;
   -webkit-box-shadow: 0 0.125rem 0.25rem rgb(33, 37, 41, 0.5);
@@ -93,10 +123,14 @@ body {
   box-shadow: 0 0.125rem 0.25rem rgb(33, 37, 41, 0.5);
 }
 
+/* Operand Styles */
 .operand {
-  /* color: #0d6efd;
-  background-color: #f8f9fa; */
-  /* FOR DARKMODE */
+  color: #0d6efd;
+  background-color: #f8f9fa;
+  border: none;
+}
+
+.operand.dark-mode {
   color: #f8f9fa;
   background-color: #343a40;
   border: none;
@@ -109,12 +143,15 @@ body {
 
 .operand-active,
 .operand:active {
-  /* color: #212529 !important;
-  background-color: #ced4da !important; */
-  /* -webkit-box-shadow: 0 0.125rem 0.25rem rgba(73, 80, 87, 0.5);
+  color: #212529 !important;
+  background-color: #ced4da !important;
+  -webkit-box-shadow: 0 0.125rem 0.25rem rgba(73, 80, 87, 0.5);
   -moz-box-shadow: 0 0.125rem 0.25rem rgba(73, 80, 87, 0.5);
-  box-shadow: 0 0.125rem 0.25rem rgba(73, 80, 87, 0.5); */
-  /* FOR DARKMODE */
+  box-shadow: 0 0.125rem 0.25rem rgba(73, 80, 87, 0.5);
+}
+
+.operand-active.dark-mode,
+.operand:active.dark-mode {
   color: #343a40 !important;
   background-color: #f8f9fa !important;
   -webkit-box-shadow: 0 0.125rem 0.25rem rgb(33, 37, 41, 0.5);
@@ -122,10 +159,16 @@ body {
   box-shadow: 0 0.125rem 0.25rem rgb(33, 37, 41, 0.5);
 }
 
+/* AC and C Styles */
 #ac,
 #c {
-  /* color: #f8d7da; */
-  /* FOR DARKMODE */
+  color: #f8d7da;
+  background-color: #dc3545;
+  border: none;
+}
+
+#ac.dark-mode,
+#c.dark-mode {
   color: #f8f9fa;
   background-color: #dc3545;
   border: none;
@@ -134,8 +177,12 @@ body {
 #ac:hover,
 #c:hover {
   color: #dc3545;
-  /* background-color: #f8d7da; */
-  /* FOR DARKMODE */
+  background-color: #f8d7da;
+}
+
+#ac:hover.dark-mode,
+#c:hover.dark-mode {
+  color: #dc3545;
   background-color: #adb5bd !important;
 }
 
@@ -144,21 +191,32 @@ body {
 #ac:active,
 #c:active {
   color: #dc3545;
-  /* background-color: #f8d7da !important; */
-  /* -webkit-box-shadow: 0 0.125rem 0.25rem rgba(132, 32, 41, 0.5);
+  background-color: #f8d7da !important;
+  -webkit-box-shadow: 0 0.125rem 0.25rem rgba(132, 32, 41, 0.5);
   -moz-box-shadow: 0 0.125rem 0.25rem rgba(132, 32, 41, 0.5);
-  box-shadow: 0 0.125rem 0.25rem rgba(132, 32, 41, 0.5); */
-  /* FOR DARKMODE */
+  box-shadow: 0 0.125rem 0.25rem rgba(132, 32, 41, 0.5);
+}
+
+.ac-active.dark-mode,
+.c-active.dark-mode,
+#ac:active.dark-mode,
+#c:active.dark-mode {
+  color: #dc3545;
+
   background-color: #f8f9fa !important;
   -webkit-box-shadow: 0 0.125rem 0.25rem rgb(33, 37, 41, 0.5);
   -moz-box-shadow: 0 0.125rem 0.25rem rgb(33, 37, 41, 0.5);
   box-shadow: 0 0.125rem 0.25rem rgb(33, 37, 41, 0.5);
 }
 
+/* Equal Styles */
 #equal {
-  /* color: #e7f1ff;
-  background-color: #0d6efd; */
-  /* FOR DARKMODE */
+  color: #e7f1ff;
+  background-color: #0d6efd;
+  border: none;
+}
+
+#equal.dark-mode {
   color: #f8f9fa;
   background-color: #0d6efd;
   border: none;
@@ -166,30 +224,40 @@ body {
 
 #equal:hover {
   color: #0d6efd;
-  /* background-color: #9ec5fe; */
-  /* FOR DARKMODE */
+  background-color: #9ec5fe;
+}
+
+#equal:hover.dark-mode {
+  color: #0d6efd;
   background-color: #adb5bd !important;
 }
 
 .equal-active,
 #equal:active {
   color: #0d6efd;
-  /* background-color: #9ec5fe !important; */
-  /* -webkit-box-shadow: 0 0.125rem 0.25rem rgba(8, 66, 152, 0.5);
+  background-color: #9ec5fe !important;
+  -webkit-box-shadow: 0 0.125rem 0.25rem rgba(8, 66, 152, 0.5);
   -moz-box-shadow: 0 0.125rem 0.25rem rgba(8, 66, 152, 0.5);
-  box-shadow: 0 0.125rem 0.25rem rgba(8, 66, 152, 0.5); */
-  /* FOR DARKMODE */
+  box-shadow: 0 0.125rem 0.25rem rgba(8, 66, 152, 0.5);
+}
+
+.equal-active.dark-mode,
+#equal:active.dark-mode {
+  color: #0d6efd;
+
   background-color: #f8f9fa !important;
   -webkit-box-shadow: 0 0.125rem 0.25rem rgb(33, 37, 41, 0.5);
   -moz-box-shadow: 0 0.125rem 0.25rem rgb(33, 37, 41, 0.5);
   box-shadow: 0 0.125rem 0.25rem rgb(33, 37, 41, 0.5);
 }
 
+/* Button Styles */
 .btn {
   width: 40px;
   height: 40px;
 }
 
+/* Display-6 Styles */
 .display-6 {
   font-size: calc(0.5rem + 1.5vw);
 }

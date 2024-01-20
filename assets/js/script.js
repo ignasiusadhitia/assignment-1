@@ -339,71 +339,6 @@ allClearButton.addEventListener("click", allClear);
 const clearEntryButton = document.getElementById("c");
 clearEntryButton.addEventListener("click", clearEntry);
 
-// Event Listeners for Keyboard Inputs
-document.addEventListener("keydown", (event) => {
-  const keyValue = event.key;
-
-  const isNumeric = !isNaN(parseFloat(keyValue)) && isFinite(keyValue);
-  const isOperator = ["+", "-", "*", "/"].includes(keyValue);
-
-  // Handle numeric and decimal point inputs
-  if (isNumeric || keyValue === ".") {
-    handleOperandClick(keyValue);
-
-    // Highlight corresponding button
-    const button = document.querySelector(`[data-value="${keyValue}"]`);
-
-    if (button) {
-      button.classList.add("operand-active");
-      setTimeout(() => {
-        button.classList.remove("operand-active");
-      }, 100);
-    }
-  }
-
-  // Handle operator inputs
-  if (isOperator) {
-    handleOperatorClick(keyValue);
-
-    // Highlight corresponding button
-    const button = document.querySelector(`[data-value="${keyValue}"]`);
-
-    if (button) {
-      button.classList.add("operator-active");
-      setTimeout(() => {
-        button.classList.remove("operator-active");
-      }, 100);
-    }
-  }
-
-  // Handle special keys
-  switch (keyValue) {
-    case "Enter":
-    case "=":
-      calculate();
-      highlightSpecialKey("equal");
-      break;
-    case "%":
-      calculatePercentage();
-      highlightSpecialKey("percent");
-      break;
-    case "Escape":
-      allClear();
-      highlightSpecialKey("ac");
-      break;
-    case "Backspace":
-      clearEntry();
-      highlightSpecialKey("c");
-      break;
-    case "n":
-      negate();
-      highlightSpecialKey("negation");
-      break;
-    default:
-      break;
-  }
-});
-
 document.addEventListener("DOMContentLoaded", (event) => {
   // Get the dark mode toggle switch and check local storage
   const darkModeToggle = document.getElementById("darkModeToggle");
@@ -431,6 +366,12 @@ document.addEventListener("DOMContentLoaded", (event) => {
     localStorage.setItem("darkMode", darkModeToggle.checked);
   }
 
+  // Function to toggle dark mode
+  function toggleDarkMode() {
+    darkModeToggle.checked = !darkModeToggle.checked;
+    updateDarkMode();
+  }
+
   // Event listener for the dark mode toggle switch
   darkModeToggle.addEventListener("change", updateDarkMode);
 
@@ -441,4 +382,72 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
   // Apply the dark mode on page load
   updateDarkMode();
+
+  // Event Listeners for Keyboard Inputs
+  document.addEventListener("keydown", (event) => {
+    const keyValue = event.key;
+
+    const isNumeric = !isNaN(parseFloat(keyValue)) && isFinite(keyValue);
+    const isOperator = ["+", "-", "*", "/"].includes(keyValue);
+
+    // Handle numeric and decimal point inputs
+    if (isNumeric || keyValue === ".") {
+      handleOperandClick(keyValue);
+
+      // Highlight corresponding button
+      const button = document.querySelector(`[data-value="${keyValue}"]`);
+
+      if (button) {
+        button.classList.add("operand-active");
+        setTimeout(() => {
+          button.classList.remove("operand-active");
+        }, 100);
+      }
+    }
+
+    // Handle operator inputs
+    if (isOperator) {
+      handleOperatorClick(keyValue);
+
+      // Highlight corresponding button
+      const button = document.querySelector(`[data-value="${keyValue}"]`);
+
+      if (button) {
+        button.classList.add("operator-active");
+        setTimeout(() => {
+          button.classList.remove("operator-active");
+        }, 100);
+      }
+    }
+
+    // Handle special keys
+    switch (keyValue) {
+      case "Enter":
+      case "=":
+        calculate();
+        highlightSpecialKey("equal");
+        break;
+      case "%":
+        calculatePercentage();
+        highlightSpecialKey("percent");
+        break;
+      case "Escape":
+        allClear();
+        highlightSpecialKey("ac");
+        break;
+      case "Backspace":
+        clearEntry();
+        highlightSpecialKey("c");
+        break;
+      case "n":
+        negate();
+        highlightSpecialKey("negation");
+        break;
+      case "d":
+        toggleDarkMode();
+        break;
+      default:
+        break;
+    }
+  });
 });
